@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaibhav Rajput · One Step Ahead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f8f7f4;
+  --bg-white:#ffffff;
+  --bg-dark:#0d0d0d;
+  --text:#1a1a1a;
+  --muted:#86868b;
+  --gold:#c9a84c;
+  --navy:#1A1A2E;
+  --radius:28px;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
+button{font-family:'DM Sans',sans-serif;cursor:pointer}
+section{position:relative}
+
+/* ── SCROLL ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.8s var(--ease),transform 0.8s var(--ease)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ── NAVIGATION ── */
+nav{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  background:rgba(248,247,244,0.88);backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(0,0,0,0.05);
+  padding:1.2rem 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:padding 0.4s var(--ease);
+}
+nav.scrolled{padding:0.7rem 4rem}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;color:var(--text)}
+.nav-links{display:flex;align-items:center;gap:2.2rem}
+.nav-links a{font-size:0.88rem;color:var(--text);opacity:0.6;transition:opacity 0.3s}
+.nav-links a:hover,.nav-links a.active{opacity:1}
+.nav-cta{
+  background:var(--text);color:#fff;padding:0.6rem 1.5rem;
+  border-radius:50px;font-size:0.83rem;font-weight:500;
+  transition:background 0.3s,transform 0.3s;
+}
+.nav-cta:hover{background:#333;transform:translateY(-1px)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+.nav-hamburger span{display:block;width:24px;height:1.5px;background:var(--text);transition:all 0.3s var(--ease)}
+.nav-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.nav-overlay{
+  position:fixed;inset:0;background:#f8f7f4;z-index:999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+  opacity:0;pointer-events:none;transition:opacity 0.4s var(--ease);
+}
+.nav-overlay.open{opacity:1;pointer-events:all}
+.nav-overlay a{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:400;color:var(--text);transition:font-style 0.2s}
+.nav-overlay a:hover{font-style:italic}
+
+/* ── SECTION LABELS ── */
+.section-label{
+  font-size:0.7rem;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1rem;display:block;font-family:'DM Sans',sans-serif;font-weight:400;
+}
+.section-header{max-width:640px}
+.section-header h2{font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.15;margin-top:0.3rem}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;background:#0a0a10;position:relative;overflow:hidden;
+  background-image:radial-gradient(ellipse at 65% 50%, #1e1a2e, #0a0a10 70%);
+}
+.hero-glow{
+  position:absolute;right:-30px;top:50%;transform:translateY(-50%);
+  width:300px;height:300px;border-radius:50%;
+  background:rgba(112,96,255,0.12);filter:blur(80px);pointer-events:none;
+}
+.hero-photo{
+  position:absolute;right:50px;bottom:0;
+  width:200px;height:420px;border-radius:100px 100px 0 0;
+  background:linear-gradient(to top,#1a1530,#3a3060);opacity:0.35;
+}
+.hero-left-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(0,0,0,0.92),rgba(0,0,0,0.1));
+  pointer-events:none;
+}
+.hero-bottom-overlay{
+  position:absolute;bottom:0;left:0;width:100%;height:160px;
+  background:linear-gradient(to top,rgba(0,0,0,0.85),transparent);
+  pointer-events:none;
+}
+.hero-content{
+  position:absolute;left:0;top:50%;transform:translateY(-50%);
+  max-width:580px;padding:5rem 4rem;z-index:2;
+}
+.hero-eyebrow{
+  font-size:0.7rem;letter-spacing:0.28em;text-transform:uppercase;
+  color:rgba(201,168,76,0.65);display:block;margin-bottom:1.6rem;
+  opacity:0;animation:fadeUp 0.8s var(--ease) 0.4s forwards;
+}
+.hero-line{display:block;font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,4.5rem);font-weight:400;line-height:1.1}
+.hero-line-1{color:rgba(240,237,232,0.65);opacity:0;animation:fadeUp 0.8s var(--ease) 0.7s forwards}
+.hero-line-2{color:rgba(240,237,232,0.82);opacity:0;animation:fadeUp 0.8s var(--ease) 1.0s forwards}
+.hero-line-3{color:#f0ede8;font-style:italic;opacity:0;animation:fadeUp 0.8s var(--ease) 1.3s forwards}
+.hero-sub{
+  font-size:1rem;font-weight:300;color:rgba(255,255,255,0.38);
+  line-height:1.75;max-width:380px;margin-top:1.8rem;
+  opacity:0;animation:fadeUp 0.8s var(--ease) 1.6s forwards;
+}
+.hero-btns{
+  display:flex;flex-direction:row;gap:10px;margin-top:2.4rem;
+  opacity:0;animation:fadeUp 0.8s var(--ease) 1.9s forwards;
+}
+.btn-primary{
+  background:var(--gold);color:#0a0a0f;padding:0.9rem 2rem;
+  border-radius:50px;font-weight:600;font-size:0.88rem;border:none;
+  transition:background 0.3s,transform 0.3s;cursor:pointer;
+}
+.btn-primary:hover{background:#e0b855;transform:translateY(-2px)}
+.btn-secondary{
+  border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.5);
+  padding:0.9rem 2rem;border-radius:50px;background:transparent;
+  font-size:0.88rem;font-weight:400;
+  transition:border-color 0.3s,color 0.3s,transform 0.3s;cursor:pointer;
+}
+.btn-secondary:hover{border-color:rgba(255,255,255,0.5);color:rgba(255,255,255,0.8);transform:translateY(-2px)}
+.hero-badge{
+  position:absolute;bottom:2.5rem;right:2.5rem;z-index:3;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+  backdrop-filter:blur(8px);border-radius:50px;padding:8px 16px;
+  display:flex;align-items:center;gap:8px;
+  opacity:0;animation:fadeUp 0.8s var(--ease) 2.1s forwards;
+}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:#4caf79;animation:blink 2s infinite}
+.badge-text{font-size:0.78rem;color:rgba(255,255,255,0.6)}
+.hero-scroll{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;z-index:3;
+  opacity:0;animation:fadeUp 0.8s var(--ease) 2.4s forwards;
+}
+.hero-scroll-line{width:1px;height:32px;background:linear-gradient(to bottom,rgba(255,255,255,0.5),transparent)}
+.hero-scroll-text{font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+
+/* ── SERVICES ── */
+#services{background:#fff;padding:7rem 4rem}
+.services-inner{max-width:1200px;margin:0 auto}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:4rem}
+.service-card{
+  background:var(--bg);border-radius:var(--radius);padding:2.8rem 2.4rem;
+  transition:transform 0.5s var(--ease),box-shadow 0.5s var(--ease);
+  opacity:0;transform:translateY(28px);
+}
+.service-card.visible{opacity:1;transform:translateY(0)}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.06)}
+.service-icon{
+  width:48px;height:48px;background:#fff;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.8rem;
+}
+.service-card h3{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:300;margin-bottom:1rem}
+.service-card p{font-size:0.88rem;color:#666;line-height:1.78;font-weight:300}
+
+/* ── ABOUT / VALUES ── */
+#about{background:var(--bg);padding:7rem 4rem}
+.about-intro{max-width:660px;text-align:center;margin:0 auto;padding-bottom:3rem}
+.about-intro h2{font-size:clamp(2rem,4vw,3rem);font-weight:300;margin:0.5rem 0 1.5rem}
+.about-intro p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:#555;line-height:1.7}
+.values-container{max-width:1100px;margin:0 auto}
+.value-block{
+  position:relative;min-height:60vh;display:flex;
+  align-items:center;justify-content:center;
+}
+.value-glow{
+  position:absolute;width:520px;height:520px;border-radius:50%;
+  filter:blur(100px);opacity:0;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  transition:opacity 2s ease;pointer-events:none;
+}
+.value-block.visible .value-glow{opacity:0.32}
+.value-card{
+  background:rgba(255,255,255,0.62);backdrop-filter:blur(40px) saturate(180%);
+  border:1px solid rgba(255,255,255,0.88);border-radius:36px;padding:3.8rem;
+  box-shadow:0 2px 2px rgba(255,255,255,0.9) inset,0 20px 60px rgba(0,0,0,0.05);
+  max-width:680px;width:100%;position:relative;overflow:hidden;
+  opacity:0;transition:opacity 1.2s var(--ease),transform 1.2s var(--ease);
+  will-change:transform;transform-style:preserve-3d;
+}
+.value-block.from-left .value-card{transform:translateX(-100px) rotateY(-4deg) scale(0.95)}
+.value-block.from-right .value-card{transform:translateX(100px) rotateY(4deg) scale(0.95)}
+.value-block.visible .value-card{opacity:1;transform:translateX(0) rotateY(0) scale(1)}
+.value-card-shine{
+  position:absolute;inset:0;border-radius:36px;pointer-events:none;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,0.15),transparent 60%);
+  opacity:0;transition:opacity 0.3s;
+}
+.value-card:hover .value-card-shine{opacity:1}
+.value-counter{font-size:0.7rem;color:var(--muted);letter-spacing:0.2em;margin-bottom:0.8rem}
+.value-card h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4.5vw,3.8rem);font-weight:300;line-height:1}
+.value-divider{width:32px;height:1px;background:#ddd;margin:1.2rem 0 1.5rem}
+.value-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:#444;line-height:1.55;margin-bottom:1.5rem}
+.value-bullets{list-style:none;padding-left:1.5rem}
+.value-bullets li{font-size:0.9rem;color:#555;line-height:1.75;font-weight:300;margin-bottom:0.4rem;position:relative}
+.value-bullets li::before{content:"—";position:absolute;left:-1.5rem;color:#bbb}
+
+/* Connectors */
+.connector{height:200px;display:flex;align-items:center;justify-content:center}
+.connector svg{width:400px;max-width:100%;height:200px}
+.connector-path{stroke:#d0d0d5;stroke-width:1.2;fill:none;transition:stroke-dashoffset 2s ease}
+
+/* Values closing */
+.values-closing{
+  background:#0d0d0d;min-height:70vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:6rem 2rem;
+  position:relative;overflow:hidden;
+  opacity:0;transform:translateY(28px);transition:opacity 0.8s var(--ease),transform 0.8s var(--ease);
+}
+.values-closing.visible{opacity:1;transform:translateY(0)}
+.closing-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:400px;height:400px;border-radius:50%;
+  background:rgba(201,168,76,0.2);filter:blur(80px);pointer-events:none;
+}
+.closing-quote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(1.8rem,5vw,3.5rem);color:#f0ede8;
+  line-height:1.2;position:relative;z-index:1;max-width:800px;
+}
+.closing-attr{color:#555;font-size:0.8rem;margin-top:1.5rem;letter-spacing:0.1em;position:relative;z-index:1}
+
+/* ── CRAFT ── */
+#craft{background:var(--bg);padding:7rem 4rem}
+.craft-inner{max-width:1200px;margin:0 auto}
+.craft-header p{font-size:1rem;color:#666;font-style:italic;margin-top:1rem;max-width:500px}
+.craft-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:4rem}
+.craft-card{
+  background:#fff;border:1px solid rgba(0,0,0,0.07);border-radius:20px;
+  padding:1.8rem;cursor:pointer;
+  transition:border-color 0.3s,box-shadow 0.3s,transform 0.3s;
+  opacity:0;transform:translateY(28px);
+}
+.craft-card.visible{opacity:1;transform:translateY(0)}
+.craft-card.active{border-color:rgba(0,0,0,0.14);box-shadow:0 4px 20px rgba(0,0,0,0.06)}
+.craft-card:nth-child(5){grid-column:span 2}
+.craft-counter{font-size:0.68rem;color:var(--muted);letter-spacing:0.2em;margin-bottom:0.6rem}
+.craft-title-row{display:flex;justify-content:space-between;align-items:center}
+.craft-title{font-size:0.95rem;font-weight:500;color:#1a1a1a}
+.craft-plus{font-size:1.1rem;color:#999;transition:transform 0.3s var(--ease)}
+.craft-card.active .craft-plus{transform:rotate(45deg)}
+.craft-teaser{font-size:0.82rem;color:#888;font-style:italic;margin-top:0.5rem;overflow:hidden;transition:max-height 0.4s var(--ease),opacity 0.3s}
+.craft-card.active .craft-teaser{max-height:0;opacity:0}
+.craft-expanded{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.4s var(--ease),opacity 0.3s}
+.craft-card.active .craft-expanded{max-height:300px;opacity:1}
+.craft-expanded p{font-size:0.88rem;color:#555;line-height:1.75;font-weight:300;margin-top:1rem}
+.craft-divider{width:100%;height:1px;background:#eee;margin:1rem 0}
+.craft-filter-label{font-weight:600;font-size:0.78rem;color:#555;margin-bottom:0.3rem}
+.craft-filter-q{font-size:0.78rem;color:#999;font-style:italic}
+
+/* ── WORK ── */
+#work{background:#fff;padding:7rem 4rem}
+.work-inner{max-width:1200px;margin:0 auto}
+.yt-channel-card{
+  background:var(--bg);border-radius:var(--radius);overflow:hidden;margin:3rem 0;
+  opacity:0;transform:translateY(28px);transition:opacity 0.8s var(--ease),transform 0.8s var(--ease);
+}
+.yt-channel-card.visible{opacity:1;transform:translateY(0)}
+.yt-banner{
+  height:180px;background:linear-gradient(135deg,#0f0f0f,#1a1a2e);
+  position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.yt-banner-text{
+  position:absolute;font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,8vw,7rem);font-weight:600;color:rgba(255,255,255,0.04);
+  letter-spacing:-0.05em;user-select:none;
+}
+.yt-banner-badge{
+  border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(8px);border-radius:50px;padding:8px 16px;
+  display:flex;align-items:center;gap:8px;z-index:1;
+}
+.yt-banner-badge span{font-size:0.82rem;color:rgba(255,255,255,0.7)}
+.yt-profile-row{
+  padding:1.5rem 2.8rem;display:flex;align-items:center;gap:1.8rem;
+}
+.yt-avatar{
+  width:80px;height:80px;border-radius:50%;margin-top:-44px;
+  border:3px solid var(--bg);object-fit:cover;background:#ccc;
+}
+.yt-name{font-weight:600;font-size:1.25rem;color:#1a1a1a}
+.yt-handle{color:#86868b;font-size:0.82rem;margin-top:0.2rem}
+.yt-subscribe{
+  margin-left:auto;background:#111;color:#fff;border:none;
+  border-radius:50px;padding:0.7rem 1.6rem;font-size:0.83rem;font-weight:500;
+  cursor:pointer;transition:background 0.3s;text-decoration:none;display:inline-block;
+}
+.yt-subscribe:hover{background:#ff0000}
+.work-sub-header{display:flex;align-items:center;gap:0.7rem;margin:3rem 0 1.5rem;font-size:1rem;font-weight:500}
+.media-grid-shorts{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:1rem}
+.media-grid-videos{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-top:3rem}
+.media-card{
+  border-radius:18px;overflow:hidden;cursor:pointer;
+  transition:transform 0.4s var(--ease),box-shadow 0.4s var(--ease);
+  opacity:0;transform:translateY(28px);
+  display:block;text-decoration:none;
+}
+.media-card.visible{opacity:1;transform:translateY(0)}
+.media-card:hover{transform:scale(1.03) translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.1)}
+.media-card-short{aspect-ratio:9/16;background:#1a1a1a}
+.media-card-short img,.media-card-video-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.media-card-video-thumb{aspect-ratio:16/9;background:#1a1a1a}
+.media-card-meta{padding:0.7rem 0}
+.media-card-title{font-size:0.85rem;font-weight:500;color:#1a1a1a;line-height:1.4}
+.media-card-date{font-size:0.75rem;color:var(--muted);margin-top:0.2rem}
+.yt-fallback{
+  padding:2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1rem;min-height:200px;
+}
+.yt-fallback a{
+  display:flex;align-items:center;gap:0.6rem;
+  background:#111;color:#fff;border-radius:50px;padding:0.8rem 1.8rem;
+  font-size:0.9rem;font-weight:500;transition:background 0.3s;
+}
+.yt-fallback a:hover{background:#ff0000}
+.yt-fallback p{color:var(--muted);font-size:0.85rem}
+/* Skeleton */
+.skeleton{background:linear-gradient(90deg,#eee 25%,#f5f5f5 50%,#eee 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:18px}
+.instagram-section{margin:3rem 0}
+.ig-follow{display:inline-flex;align-items:center;gap:0.4rem;color:#0a66c2;font-size:0.88rem;margin-top:1rem}
+.linkedin-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-top:1rem}
+.linkedin-card{
+  background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:16px;
+  padding:1.8rem;border-left:3px solid #0a66c2;
+}
+.linkedin-card blockquote{font-style:italic;color:#444;font-size:0.9rem;line-height:1.7;margin-bottom:1rem}
+.linkedin-card-date{font-size:0.78rem;color:var(--muted);margin-bottom:0.8rem}
+.linkedin-link{font-size:0.82rem;color:#0a66c2;font-weight:500}
+
+/* ── WHY ME ── */
+#why{background:var(--bg);padding:7rem 4rem}
+.why-inner{max-width:1200px;margin:0 auto}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:4rem}
+.why-card{
+  background:#fff;border:1px solid rgba(0,0,0,0.05);border-radius:24px;padding:2.4rem;
+  transition:transform 0.4s var(--ease),box-shadow 0.4s var(--ease);
+  opacity:0;transform:translateY(28px);
+}
+.why-card.visible{opacity:1;transform:translateY(0)}
+.why-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.07)}
+.why-icon{width:44px;height:44px;background:var(--bg);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1.4rem}
+.why-card h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;margin-bottom:0.8rem}
+.why-card p{font-size:0.88rem;color:#666;line-height:1.78;font-weight:300}
+
+/* ── CONTACT ── */
+#contact{background:#0d0d0d;padding:7rem 4rem;position:relative;overflow:hidden}
+.contact-glow{
+  position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;
+  background:rgba(201,168,76,0.1);filter:blur(80px);pointer-events:none;
+}
+.contact-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;position:relative;z-index:1}
+.contact-left .section-label{color:rgba(255,255,255,0.3)}
+.contact-left h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;color:#f0ede8;margin:0.5rem 0 1.2rem}
+.contact-left>p{font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.4);font-size:1rem;line-height:1.7}
+.contact-socials{display:flex;flex-direction:column;gap:0.8rem;margin-top:2.5rem}
+.contact-social-link{display:flex;align-items:center;gap:0.7rem;color:rgba(255,255,255,0.45);font-size:0.88rem;transition:color 0.3s}
+.contact-social-link:hover{color:rgba(255,255,255,0.9)}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-input{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  border-radius:14px;padding:0.95rem 1.1rem;color:#f0ede8;font-family:'DM Sans',sans-serif;font-size:0.88rem;
+  transition:border-color 0.3s,background 0.3s;outline:none;width:100%;
+}
+.form-input::placeholder{color:rgba(255,255,255,0.2)}
+.form-input:focus{border-color:rgba(201,168,76,0.5);background:rgba(255,255,255,0.09)}
+textarea.form-input{height:130px;resize:vertical}
+.form-submit{
+  background:var(--gold);color:#0d0d0d;border:none;border-radius:50px;
+  padding:1rem 2.2rem;font-weight:600;font-size:0.9rem;cursor:pointer;
+  transition:background 0.3s,transform 0.3s,box-shadow 0.3s;align-self:flex-start;
+}
+.form-submit:hover{background:#e0b855;transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.3)}
+.form-submit.sent{background:#4caf79;color:#fff}
+
+/* ── FOOTER ── */
+footer{
+  background:#0d0d0d;min-height:100vh;
+  border-top:1px solid rgba(255,255,255,0.04);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:6rem 4rem 4rem;position:relative;overflow:hidden;cursor:none;
+}
+.footer-glow{
+  position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 1s;
+  background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(201,168,76,0.1),transparent 50%);
+}
+footer.visible .footer-glow{opacity:1}
+.footer-center{text-align:center;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1}
+.footer-name{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,16vw,18rem);font-weight:600;text-transform:uppercase;letter-spacing:-0.05em;color:#fff;line-height:1;overflow:hidden}
+.footer-name .letter{display:inline-block;transform:translateY(100%);transition:transform 1s var(--ease)}
+footer.visible .footer-name .letter{transform:translateY(0)}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,0.2);font-size:1.1rem;margin-top:0.5rem}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:2.8rem;display:flex;justify-content:space-between;align-items:flex-start;gap:2rem;position:relative;z-index:1;opacity:0;transform:translateY(18px);transition:opacity 0.8s var(--ease) 0.5s,transform 0.8s var(--ease) 0.5s}
+footer.visible .footer-bottom{opacity:1;transform:translateY(0)}
+.footer-col{display:flex;flex-direction:column;gap:0.6rem}
+.footer-col-title{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:#555;margin-bottom:0.4rem}
+.footer-link{color:#888;font-size:0.85rem;display:flex;align-items:center;gap:0.3rem;transition:color 0.3s,transform 0.3s}
+.footer-link:hover{color:#fff;transform:translateX(5px)}
+.footer-copy{color:#444;font-size:0.78rem;align-self:flex-end}
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  nav.scrolled{padding:0.6rem 1.5rem}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .hero-content{padding:3rem 1.5rem;max-width:100%;position:relative;left:auto;top:auto;transform:none;text-align:center}
+  #hero{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh}
+  .hero-photo{display:none}
+  .hero-btns{justify-content:center}
+  .services-grid{grid-template-columns:1fr}
+  .value-block.from-left .value-card,.value-block.from-right .value-card{transform:translateY(40px)}
+  .value-block.visible .value-card{transform:translateY(0)}
+  .craft-grid{grid-template-columns:1fr}
+  .craft-card:nth-child(5){grid-column:span 1}
+  .media-grid-videos{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .contact-inner{grid-template-columns:1fr;gap:3rem}
+  section{padding:5rem 1.5rem !important}
+  .footer-bottom{flex-direction:column}
+  footer{padding:4rem 1.5rem 3rem}
+  .linkedin-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV OVERLAY -->
+<div class="nav-overlay" id="navOverlay">
+  <a href="#about" class="nav-overlay-link">About</a>
+  <a href="#work" class="nav-overlay-link">Work</a>
+  <a href="#why" class="nav-overlay-link">Why Me</a>
+  <a href="#contact" class="nav-overlay-link">Let's Collaborate</a>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">Vaibhav Rajput</a>
+  <div class="nav-links">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#work" class="nav-link">Work</a>
+    <a href="#why" class="nav-link">Why Me</a>
+    <a href="#contact" class="nav-cta">Let's Collaborate</a>
+  </div>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-photo"></div>
+  <div class="hero-left-overlay"></div>
+  <div class="hero-bottom-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Content Creator · Personal Brand Strategist</span>
+    <h1>
+      <span class="hero-line hero-line-1">Think.</span>
+      <span class="hero-line hero-line-2">Create.</span>
+      <span class="hero-line hero-line-3">Inspire.</span>
+    </h1>
+    <p class="hero-sub">Authentic storytelling and content rooted in real conviction — not noise, not trends. Just depth.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Work With Me</button>
+      <button class="btn-secondary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">See My Work</button>
+    </div>
+  </div>
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    <span class="badge-text">Available for Projects</span>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span class="hero-scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- SECTION 2: SERVICES -->
+<section id="services">
+  <div class="services-inner">
+    <div class="section-header">
+      <span class="section-label">What I Do</span>
+      <h2>How I Help Brands</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <h3>Content Creation</h3>
+        <p>YouTube, Instagram, and written content that educates and builds genuine connection — rooted in philosophy and real research, not trend-chasing.</p>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:0.1s">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3>Personal Branding</h3>
+        <p>Helping brands stand out with a clear authentic identity that stands for something real — not just a strategy but a conviction that compounds.</p>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:0.2s">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3>Storytelling &amp; Communication</h3>
+        <p>Turning complex ideas into stories people remember. Scripts and frameworks that make audiences feel something real and take meaningful action.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: ABOUT / VALUES -->
+<section id="about">
+  <div class="about-intro fade-up">
+    <span class="section-label">My Story</span>
+    <h2>The Foundation of Everything</h2>
+    <p>I'm not a guru. I'm a fellow learner — obsessed with growth, clarity, and the belief that one step forward every day compounds into something extraordinary. Scroll to explore the values that drive everything I create.</p>
+  </div>
+
+  <div class="values-container">
+
+    <!-- VALUE 01 -->
+    <div class="value-block from-left">
+      <div class="value-glow" style="background:#c8d8f0"></div>
+      <div class="value-card">
+        <div class="value-card-shine"></div>
+        <div class="value-counter">01 / 05</div>
+        <h2>Simplicity</h2>
+        <div class="value-divider"></div>
+        <p class="value-quote">"Simplicity is the foundation of everything."</p>
+        <ul class="value-bullets">
+          <li>Mental energy is finite. Every unnecessary decision drains the reservoir you need for meaningful work.</li>
+          <li>Decision fatigue is proven science. Simplicity protects your best thinking for what matters most.</li>
+          <li>Strip the noise. What remains is always the essential. And the essential is always enough.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CONNECTOR 1 -->
+    <div class="connector">
+      <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+        <path class="connector-path" d="M200,0 C200,100 380,100 380,200"/>
+      </svg>
+    </div>
+
+    <!-- VALUE 02 -->
+    <div class="value-block from-right">
+      <div class="value-glow" style="background:#f0d090"></div>
+      <div class="value-card">
+        <div class="value-card-shine"></div>
+        <div class="value-counter">02 / 05</div>
+        <h2>Curiosity</h2>
+        <div class="value-divider"></div>
+        <p class="value-quote">"I need to know what's on the other side."</p>
+        <ul class="value-bullets">
+          <li>Curiosity is my biggest driver. Without it mastery is impossible.</li>
+          <li>The difference between performing a task and being fully alive inside it.</li>
+          <li>Not a personality trait — a deliberate daily practice chosen every morning.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CONNECTOR 2 -->
+    <div class="connector">
+      <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+        <path class="connector-path" d="M380,0 C380,100 20,100 20,200"/>
+      </svg>
+    </div>
+
+    <!-- VALUE 03 -->
+    <div class="value-block from-left">
+      <div class="value-glow" style="background:#a0c8f0"></div>
+      <div class="value-card">
+        <div class="value-card-shine"></div>
+        <div class="value-counter">03 / 05</div>
+        <h2>Clarity</h2>
+        <div class="value-divider"></div>
+        <p class="value-quote">"Confidence without clarity is a dangerous thing."</p>
+        <ul class="value-bullets">
+          <li>Seek to understand before acting. Seek to know before speaking.</li>
+          <li>Most confusion is not about what to do — it's about what you want.</li>
+          <li>A clear mind produces clear work. Everything flows from an unmuddied source.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CONNECTOR 3 -->
+    <div class="connector">
+      <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+        <path class="connector-path" d="M20,0 C20,100 380,100 380,200"/>
+      </svg>
+    </div>
+
+    <!-- VALUE 04 -->
+    <div class="value-block from-right">
+      <div class="value-glow" style="background:#c8a8f0"></div>
+      <div class="value-card">
+        <div class="value-card-shine"></div>
+        <div class="value-counter">04 / 05</div>
+        <h2>Story</h2>
+        <div class="value-divider"></div>
+        <p class="value-quote">"Facts inform. Stories transform."</p>
+        <ul class="value-bullets">
+          <li>Story is the vehicle. The idea is the passenger. Without the vehicle the idea never arrives.</li>
+          <li>My entire practice is built around one discipline: better stories, every day.</li>
+          <li>The oldest technology humans have. It outlives every argument and statistic.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CONNECTOR 4 -->
+    <div class="connector">
+      <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+        <path class="connector-path" d="M380,0 C380,100 20,100 20,200"/>
+      </svg>
+    </div>
+
+    <!-- VALUE 05 -->
+    <div class="value-block from-left">
+      <div class="value-glow" style="background:#e8d0a8"></div>
+      <div class="value-card">
+        <div class="value-card-shine"></div>
+        <div class="value-counter">05 / 05</div>
+        <h2>Connection</h2>
+        <div class="value-divider"></div>
+        <p class="value-quote">"What matters most is who you built it for."</p>
+        <ul class="value-bullets">
+          <li>One idea reaching the right person at the right moment changes trajectories.</li>
+          <li>Not interested in broadcasting. Interested in genuinely reaching people.</li>
+          <li>One step ahead of someone. One step behind someone else. That humility connects.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CLOSING DARK BLOCK -->
+    <div class="values-closing">
+      <div class="closing-glow"></div>
+      <p class="closing-quote">"Simplicity is the foundation of everything."</p>
+      <p class="closing-attr">— Vaibhav Rajput · One Step Ahead</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 4: CRAFT -->
+<section id="craft">
+  <div class="craft-inner">
+    <div class="section-header craft-header">
+      <span class="section-label">How I Work</span>
+      <h2>What I've Chosen to Master</h2>
+      <p>Not a list of skills. These are the operating principles behind everything I create.</p>
+    </div>
+    <div class="craft-grid">
+
+      <div class="craft-card fade-up" data-craft>
+        <div class="craft-counter">01</div>
+        <div class="craft-title-row">
+          <span class="craft-title">Storytelling</span>
+          <span class="craft-plus">+</span>
+        </div>
+        <div class="craft-teaser">Every idea goes through a story first.</div>
+        <div class="craft-expanded">
+          <p>Every idea I have goes through a story before it reaches anyone. Not because storytelling is a technique — but because it's the only format the human mind actually absorbs and retains. If I can't tell something as a story I don't understand it well enough yet. Facts inform. Stories transform. Everything I create is built around this.</p>
+          <div class="craft-divider"></div>
+          <div class="craft-filter-label">Filter question:</div>
+          <div class="craft-filter-q">Can I make someone feel this, not just understand it?</div>
+        </div>
+      </div>
+
+      <div class="craft-card fade-up" data-craft style="transition-delay:0.1s">
+        <div class="craft-counter">02</div>
+        <div class="craft-title-row">
+          <span class="craft-title">Meaningful Creation</span>
+          <span class="craft-plus">+</span>
+        </div>
+        <div class="craft-teaser">Value in someone's life is the only metric.</div>
+        <div class="craft-expanded">
+          <p>I can't sustain something I'm doing purely for money or status. What actually drives me is whether what I'm building matters to another person. Revenue and recognition are results — not the goal. If I'm creating content that doesn't genuinely help or move someone I'm producing noise. I refuse to produce noise.</p>
+          <div class="craft-divider"></div>
+          <div class="craft-filter-label">Filter question:</div>
+          <div class="craft-filter-q">Does this create real value in someone else's life?</div>
+        </div>
+      </div>
+
+      <div class="craft-card fade-up" data-craft style="transition-delay:0.15s">
+        <div class="craft-counter">03</div>
+        <div class="craft-title-row">
+          <span class="craft-title">Purpose</span>
+          <span class="craft-plus">+</span>
+        </div>
+        <div class="craft-teaser">No deeper why, no start. Simple as that.</div>
+        <div class="craft-expanded">
+          <p>I don't begin anything without knowing the why — not the surface why but the deep one. The kind that keeps you going when motivation disappears and results haven't arrived yet. Purpose is the engine underneath everything I build. Without it effort is just activity. With it even the hardest days have direction.</p>
+          <div class="craft-divider"></div>
+          <div class="craft-filter-label">Filter question:</div>
+          <div class="craft-filter-q">Would I still do this if nobody was watching?</div>
+        </div>
+      </div>
+
+      <div class="craft-card fade-up" data-craft style="transition-delay:0.2s">
+        <div class="craft-counter">04</div>
+        <div class="craft-title-row">
+          <span class="craft-title">Impact</span>
+          <span class="craft-plus">+</span>
+        </div>
+        <div class="craft-teaser">Everything aims at a real outcome for a real person.</div>
+        <div class="craft-expanded">
+          <p>Content for content's sake is noise. Consistency for consistency's sake is just showing up. Everything I create is aimed at a real outcome in a real person's life — a shift in thinking a decision made clearer a belief challenged. If I can't answer what changes for someone after consuming this I don't publish it.</p>
+          <div class="craft-divider"></div>
+          <div class="craft-filter-label">Filter question:</div>
+          <div class="craft-filter-q">Did this actually move something for someone?</div>
+        </div>
+      </div>
+
+      <div class="craft-card fade-up" data-craft style="transition-delay:0.25s;grid-column:span 2">
+        <div class="craft-counter">05</div>
+        <div class="craft-title-row">
+          <span class="craft-title">Authenticity</span>
+          <span class="craft-plus">+</span>
+        </div>
+        <div class="craft-teaser">If it's not genuinely mine I won't sustain it — and without sustainability there's no long game.</div>
+        <div class="craft-expanded">
+          <p>The things I keep doing long-term are always the things that feel genuinely mine. Inauthenticity compounds — it becomes harder to maintain quality drops and eventually I abandon it. Authenticity is not a moral position. It's a survival strategy for anyone building something over years. Honest to myself first. Honest to the world second.</p>
+          <div class="craft-divider"></div>
+          <div class="craft-filter-label">Filter question:</div>
+          <div class="craft-filter-q">Can I look at this a year from now and feel it was truly mine?</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: WORK -->
+<section id="work">
+  <div class="work-inner">
+    <div class="section-header">
+      <span class="section-label">Proof of Work</span>
+      <h2>Content I Create</h2>
+    </div>
+
+    <!-- YouTube Channel Card -->
+    <div class="yt-channel-card">
+      <div class="yt-banner">
+        <div class="yt-banner-text">ONE STEP AHEAD</div>
+        <div class="yt-banner-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span>@vaibhav.rajpute</span>
+        </div>
+      </div>
+      <div class="yt-profile-row">
+        <img class="yt-avatar" src="https://yt3.googleusercontent.com/jg-Oc7SZas88VRejJiT_FiyUZ7-T-Dhv71ccrJJ4Sfkt-9hb0J1Cz9cdmRk7ccKAIMr0PgAmaQ=s176-c-k-c0x00ffffff-no-rj" alt="Vaibhav Rajput" onerror="this.style.background='#c9a84c'">
+        <div>
+          <div class="yt-name">Vaibhav Rajput</div>
+          <div class="yt-handle">@vaibhav.rajpute · Content Creator · One Step Ahead</div>
+        </div>
+        <a href="https://www.youtube.com/@vaibhav.rajpute?sub_confirmation=1" target="_blank" class="yt-subscribe">Subscribe</a>
+      </div>
+    </div>
+
+    <!-- YouTube Content -->
+    <div id="ytContent">
+      <div class="work-sub-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        Shorts
+      </div>
+      <div id="shortsGrid" class="media-grid-shorts"></div>
+      <div class="work-sub-header" style="margin-top:2.5rem">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        Long-form Videos
+      </div>
+      <div id="videosGrid" class="media-grid-videos"></div>
+    </div>
+
+    <!-- Instagram -->
+    <div class="instagram-section">
+      <div class="work-sub-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="url(#igGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <defs><linearGradient id="igGrad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f09433"/><stop offset="25%" stop-color="#e6683c"/><stop offset="50%" stop-color="#dc2743"/><stop offset="75%" stop-color="#cc2366"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        Instagram
+      </div>
+      <div id="behold-widget" style="border-radius:20px;overflow:hidden">
+        <!-- Paste your Behold.so embed code here -->
+        <div style="background:var(--bg);border-radius:20px;padding:2rem;text-align:center;color:var(--muted);font-size:0.88rem">Instagram feed will appear here — add your Behold.so embed code.</div>
+      </div>
+      <a href="#" class="ig-follow">
+        Follow on Instagram
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <!-- LinkedIn -->
+    <div>
+      <div class="work-sub-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#0a66c2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn · Thought Leadership
+      </div>
+      <div class="linkedin-grid">
+        <div class="linkedin-card">
+          <!-- Replace with your actual LinkedIn post content -->
+          <blockquote>"Clarity is not a personality trait — it's a discipline. Most people don't lack direction. They lack the courage to sit with a question long enough to find the real answer."</blockquote>
+          <div class="linkedin-card-date">Recent · LinkedIn</div>
+          <a href="https://www.linkedin.com/in/harixomxsingh/" target="_blank" class="linkedin-link">Read on LinkedIn →</a>
+        </div>
+        <div class="linkedin-card">
+          <!-- Replace with your actual LinkedIn post content -->
+          <blockquote>"The goal isn't to be interesting. The goal is to be genuinely interested — in ideas, in people, in the craft itself. That curiosity is what people actually follow."</blockquote>
+          <div class="linkedin-card-date">Recent · LinkedIn</div>
+          <a href="https://www.linkedin.com/in/harixomxsingh/" target="_blank" class="linkedin-link">Read on LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECTION 6: WHY ME -->
+<section id="why">
+  <div class="why-inner">
+    <div class="section-header">
+      <span class="section-label">The Difference</span>
+      <h2>Why Brands Work With Me</h2>
+    </div>
+    <div class="why-grid">
+
+      <div class="why-card fade-up">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Depth over noise</h3>
+        <p>Content rooted in philosophy real research and lived experience. Not trend-chasing — building a body of work that compounds over years.</p>
+      </div>
+
+      <div class="why-card fade-up" style="transition-delay:0.1s">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Audience-first thinking</h3>
+        <p>Every piece is built for genuine connection not clicks. I think about what the audience needs to feel before I think about what to say.</p>
+      </div>
+
+      <div class="why-card fade-up" style="transition-delay:0.15s">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <h3>Consistent &amp; reliable</h3>
+        <p>A systems thinker who delivers on time every time. Creativity without discipline is just inspiration. I bring both to every project.</p>
+      </div>
+
+      <div class="why-card fade-up" style="transition-delay:0.2s">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3>Authentic voice</h3>
+        <p>I only create what I genuinely believe in. That conviction is what separates content that resonates from content that gets scrolled past.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: CONTACT -->
+<section id="contact">
+  <div class="contact-glow"></div>
+  <div class="contact-inner">
+    <div class="contact-left fade-up">
+      <span class="section-label">Get In Touch</span>
+      <h2>Have a project in mind?</h2>
+      <p>Whether you need a content strategy brand voice or a long-term creative partner — I respond within 24 hours.</p>
+      <div class="contact-socials">
+        <a href="https://www.youtube.com/@vaibhav.rajpute" target="_blank" class="contact-social-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          YouTube · @vaibhav.rajpute
+        </a>
+        <a href="#" class="contact-social-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.linkedin.com/in/harixomxsingh/" target="_blank" class="contact-social-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn · harixomxsingh
+        </a>
+      </div>
+    </div>
+    <form class="contact-form fade-up" id="contactForm" style="transition-delay:0.15s" onsubmit="handleFormSubmit(event)">
+      <div class="form-row">
+        <input class="form-input" type="text" placeholder="Name" required>
+        <input class="form-input" type="email" placeholder="Email" required>
+      </div>
+      <input class="form-input" type="text" placeholder="Project type">
+      <textarea class="form-input" placeholder="Tell me about your project..."></textarea>
+      <button class="form-submit" type="submit" id="formSubmit">Let's Collaborate →</button>
+    </form>
+  </div>
+</section>
+
+<!-- SECTION 8: FOOTER -->
+<footer id="mainFooter">
+  <div class="footer-glow"></div>
+  <div class="footer-center">
+    <div class="footer-name" id="footerName">
+      <span class="letter">V</span><span class="letter">A</span><span class="letter">I</span><span class="letter">B</span><span class="letter">H</span><span class="letter">A</span><span class="letter">V</span>
+    </div>
+    <div class="footer-tagline">One Step Ahead.</div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-col">
+      <div class="footer-col-title">Connect</div>
+      <a href="https://www.youtube.com/@vaibhav.rajpute" target="_blank" class="footer-link">YouTube</a>
+      <a href="#" class="footer-link">Instagram</a>
+      <a href="https://www.linkedin.com/in/harixomxsingh/" target="_blank" class="footer-link">LinkedIn</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Work Together</div>
+      <a href="mailto:hello@vaibhavrajput.com" class="footer-link">hello@vaibhavrajput.com</a>
+      <a href="#contact" class="footer-link">Start a project →</a>
+    </div>
+    <div class="footer-copy">© 2025 Vaibhav Rajput. One Step Ahead.</div>
+  </div>
+</footer>
+
+<script>
+// ── YouTube API CONFIG ──
+const YT_API_KEY = "";
+const YT_CHANNEL_ID = "";
+
+// ── NAV ──
+const nav = document.getElementById('mainNav');
+const hamburger = document.getElementById('hamburger');
+const overlay = document.getElementById('navOverlay');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+  updateActiveLink();
+});
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  overlay.classList.toggle('open');
+});
+
+document.querySelectorAll('.nav-overlay-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    overlay.classList.remove('open');
+  });
+});
+
+function updateActiveLink() {
+  const sections = ['about','work','why','contact'];
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if(el && window.scrollY >= el.offsetTop - 200) current = id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+
+// ── INTERSECTION OBSERVER ──
+const ioOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      // connectors
+      if(entry.target.classList.contains('connector')) {
+        const path = entry.target.querySelector('.connector-path');
+        if(path) path.style.strokeDashoffset = '0';
+      }
+    } else {
+      entry.target.classList.remove('visible');
+      if(entry.target.classList.contains('connector')) {
+        const path = entry.target.querySelector('.connector-path');
+        if(path) path.style.strokeDashoffset = path.getTotalLength ? path.getTotalLength() : path.style.strokeDasharray;
+      }
+    }
+  });
+}, ioOptions);
+
+// Observe everything
+const targets = document.querySelectorAll(
+  '.service-card,.value-block,.value-card,.connector,.craft-card,.why-card,.yt-channel-card,.media-card,.values-closing,.instagram-section,.linkedin-card,.fade-up,footer'
+);
+targets.forEach(el => io.observe(el));
+
+// ── CONNECTOR SVG PATHS ──
+document.querySelectorAll('.connector-path').forEach(path => {
+  const len = path.getTotalLength();
+  path.style.strokeDasharray = len;
+  path.style.strokeDashoffset = len;
+  path.style.transition = 'stroke-dashoffset 2s ease';
+});
+
+// ── VALUE CARD 3D TILT ──
+document.querySelectorAll('.value-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = (e.clientX - cx) / (rect.width / 2);
+    const dy = (e.clientY - cy) / (rect.height / 2);
+    const rx = -dy * 8;
+    const ry = dx * 8;
+    const mx = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
+    const my = ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%';
+    card.style.transition = 'transform 0.1s linear';
+    card.style.transform = `translateX(0) rotateY(${ry}deg) rotateX(${rx}deg) scale(1)`;
+    card.style.setProperty('--mx', mx);
+    card.style.setProperty('--my', my);
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transition = 'transform 1.2s cubic-bezier(0.16,1,0.3,1), opacity 1.2s cubic-bezier(0.16,1,0.3,1)';
+    card.style.transform = 'translateX(0) rotateY(0) rotateX(0) scale(1)';
+  });
+});
+
+// ── CRAFT ACCORDION ──
+const craftCards = document.querySelectorAll('[data-craft]');
+craftCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const isActive = card.classList.contains('active');
+    craftCards.forEach(c => c.classList.remove('active'));
+    if(!isActive) card.classList.add('active');
+  });
+});
+
+// ── CONTACT FORM ──
+function handleFormSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('formSubmit');
+  btn.textContent = 'Message Sent ✓';
+  btn.classList.add('sent');
+  setTimeout(() => {
+    btn.textContent = "Let's Collaborate →";
+    btn.classList.remove('sent');
+    e.target.reset();
+  }, 3500);
+}
+
+// ── FOOTER MOUSE GLOW ──
+const footerEl = document.getElementById('mainFooter');
+footerEl.addEventListener('mousemove', e => {
+  const rect = footerEl.getBoundingClientRect();
+  const gx = ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%';
+  const gy = ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%';
+  footerEl.style.setProperty('--gx', gx);
+  footerEl.style.setProperty('--gy', gy);
+});
+
+// Footer letter stagger
+document.querySelectorAll('.footer-name .letter').forEach((letter, i) => {
+  letter.style.transitionDelay = (i * 0.06) + 's';
+});
+
+// ── YOUTUBE FETCH ──
+async function fetchYouTube() {
+  const shortsGrid = document.getElementById('shortsGrid');
+  const videosGrid = document.getElementById('videosGrid');
+
+  if(!YT_API_KEY || !YT_CHANNEL_ID) {
+    // Fallback
+    shortsGrid.innerHTML = `<div class="yt-fallback" style="grid-column:1/-1">
+      <p>Add YT_API_KEY and YT_CHANNEL_ID to load videos automatically.</p>
+      <a href="https://www.youtube.com/@vaibhav.rajpute" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        Visit Channel
+      </a>
+    </div>`;
+    videosGrid.innerHTML = '';
+    return;
+  }
+
+  // Show skeletons
+  shortsGrid.innerHTML = Array(4).fill(`<div class="skeleton" style="aspect-ratio:9/16;border-radius:18px"></div>`).join('');
+  videosGrid.innerHTML = Array(2).fill(`<div class="skeleton" style="aspect-ratio:16/9;border-radius:18px;height:200px"></div>`).join('');
+
+  try {
+    const base = `https://www.googleapis.com/youtube/v3/search?key=${YT_API_KEY}&channelId=${YT_CHANNEL_ID}&part=snippet&type=video&order=date`;
+    const [shortsRes, videosRes] = await Promise.all([
+      fetch(base + '&videoDuration=short&maxResults=4'),
+      fetch(base + '&videoDuration=medium&maxResults=2')
+    ]);
+    const shortsData = await shortsRes.json();
+    const videosData = await videosRes.json();
+
+    function formatDate(str) {
+      return new Date(str).toLocaleDateString('en-US', {month:'short',day:'numeric',year:'numeric'});
+    }
+
+    shortsGrid.innerHTML = (shortsData.items || []).map(v => `
+      <a href="https://www.youtube.com/watch?v=${v.id.videoId}" target="_blank" class="media-card">
+        <div class="media-card-short">
+          <img src="${v.snippet.thumbnails.high?.url || v.snippet.thumbnails.default.url}" alt="${v.snippet.title}" loading="lazy">
+        </div>
+      </a>`).join('');
+
+    videosGrid.innerHTML = (videosData.items || []).map(v => `
+      <a href="https://www.youtube.com/watch?v=${v.id.videoId}" target="_blank" class="media-card">
+        <div class="media-card-video-thumb">
+          <img src="${v.snippet.thumbnails.high?.url || v.snippet.thumbnails.default.url}" alt="${v.snippet.title}" loading="lazy">
+        </div>
+        <div class="media-card-meta">
+          <div class="media-card-title">${v.snippet.title}</div>
+          <div class="media-card-date">${formatDate(v.snippet.publishedAt)}</div>
+        </div>
+      </a>`).join('');
+
+    // Observe new media cards
+    document.querySelectorAll('.media-card').forEach(el => io.observe(el));
+  } catch(err) {
+    shortsGrid.innerHTML = `<div style="color:var(--muted);font-size:0.85rem;padding:1rem;grid-column:1/-1">Could not load videos. <a href="https://www.youtube.com/@vaibhav.rajpute" style="color:var(--gold)">Visit channel →</a></div>`;
+    videosGrid.innerHTML = '';
+  }
+}
+
+fetchYouTube();
+</script>
+</body>
+</html>

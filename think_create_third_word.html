@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:sans-serif;background:var(--color-background-primary,#fff);padding:16px}
+
+.intro{font-size:11px;color:var(--color-text-tertiary,#999);margin-bottom:14px;font-style:italic}
+
+/* Hero preview */
+.hero{
+  position:relative;width:100%;height:340px;
+  background:#0a0a10;border-radius:12px;overflow:hidden;
+  margin-bottom:14px;
+}
+.bg-grad{position:absolute;inset:0;background:radial-gradient(ellipse at 65% 50%,#1e1a2e 0%,#0a0a10 70%)}
+.photo-shape{position:absolute;right:50px;bottom:0;width:150px;height:290px;border-radius:90px 90px 0 0;background:linear-gradient(to top,#1a1530,#3a3060);opacity:0.3}
+.ov-l{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.55) 55%,rgba(0,0,0,0.1) 100%)}
+.ov-b{position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,rgba(0,0,0,0.85),transparent)}
+.glow{position:absolute;width:280px;height:280px;border-radius:50%;filter:blur(80px);opacity:0.12;right:-30px;top:50%;transform:translateY(-50%);background:#7060ff}
+
+.nav{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-bottom:0.5px solid rgba(255,255,255,0.05);z-index:5}
+.n-logo{font-family:Georgia,serif;font-size:11px;color:rgba(255,255,255,0.75)}
+.n-pill{border:0.5px solid rgba(201,168,76,0.35);color:rgba(201,168,76,0.7);padding:4px 12px;border-radius:50px;font-size:9px;letter-spacing:0.1em}
+
+.content{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:48px 24px 24px;z-index:5;max-width:70%}
+.eyebrow{font-size:8px;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:rgba(201,168,76,0.65);margin-bottom:14px}
+
+.headline{font-family:Georgia,serif;font-weight:400;color:#f0ede8;line-height:1.1;letter-spacing:-0.025em;margin-bottom:14px}
+.hl-think{font-size:clamp(1.8rem,5vw,2.8rem);display:block;opacity:0.65}
+.hl-create{font-size:clamp(1.8rem,5vw,2.8rem);display:block;opacity:0.82}
+.hl-third{
+  font-size:clamp(1.8rem,5vw,2.8rem);display:block;
+  color:#f0ede8;
+  transition:all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.hl-third em{font-style:italic}
+
+.subline{font-size:10px;font-weight:300;color:rgba(255,255,255,0.35);line-height:1.65;margin-bottom:16px;max-width:260px}
+.btns{display:flex;gap:8px}
+.btn-g{background:#c9a84c;color:#0a0a0f;padding:7px 16px;border-radius:50px;font-size:9px;font-weight:600}
+.btn-o{border:0.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.4);padding:7px 16px;border-radius:50px;font-size:9px}
+
+.badge{position:absolute;bottom:14px;right:18px;z-index:5;background:rgba(255,255,255,0.05);border:0.5px solid rgba(255,255,255,0.1);border-radius:50px;padding:5px 12px;display:flex;align-items:center;gap:6px}
+.dot{width:5px;height:5px;border-radius:50%;background:#4caf79;animation:blink 2s ease-in-out infinite}
+.badge-txt{font-size:8px;color:rgba(255,255,255,0.4)}
+
+.scroll-ind{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px;z-index:5}
+.s-line{width:1px;height:24px;background:linear-gradient(to bottom,rgba(255,255,255,0.25),transparent)}
+.s-txt{font-size:7px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.2)}
+
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* Word options */
+.words-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.word-btn{
+  border:1px solid var(--color-border-tertiary,#e5e5e5);
+  border-radius:10px;padding:12px 10px;
+  text-align:center;cursor:pointer;
+  background:var(--color-background-primary,#fff);
+  transition:all 0.2s;
+}
+.word-btn:hover{border-color:var(--color-border-secondary,#ccc);background:var(--color-background-secondary,#f5f5f5)}
+.word-btn.active{border-color:#c9a84c;background:rgba(201,168,76,0.06)}
+.w-word{font-family:Georgia,serif;font-size:16px;font-weight:400;color:var(--color-text-primary,#111);margin-bottom:4px}
+.w-tag{font-size:9px;color:var(--color-text-tertiary,#999);letter-spacing:0.1em;text-transform:uppercase}
+
+/* Description */
+.desc-box{
+  border:1px solid var(--color-border-tertiary,#e5e5e5);
+  border-radius:10px;padding:14px 16px;
+  background:var(--color-background-secondary,#f9f9f9);
+  min-height:70px;
+}
+.desc-word{font-size:13px;font-weight:500;color:var(--color-text-primary,#111);margin-bottom:5px;font-family:Georgia,serif}
+.desc-why{font-size:11px;color:var(--color-text-secondary,#666);line-height:1.6;font-style:italic}
+</style>
+</head>
+<body>
+
+<p class="intro">Click each word to see it in the hero — feel which one lands.</p>
+
+<!-- HERO PREVIEW -->
+<div class="hero">
+  <div class="bg-grad"></div>
+  <div class="glow"></div>
+  <div class="photo-shape"></div>
+  <div class="ov-l"></div><div class="ov-b"></div>
+  <div class="nav">
+    <span class="n-logo">Vaibhav Rajput</span>
+    <span class="n-pill">Let's Collaborate</span>
+  </div>
+  <div class="content">
+    <p class="eyebrow">Content Creator · Personal Brand Strategist</p>
+    <div class="headline">
+      <span class="hl-think">Think.</span>
+      <span class="hl-create">Create.</span>
+      <span class="hl-third" id="third-word"><em>Inspire.</em></span>
+    </div>
+    <p class="subline">Authentic storytelling rooted in real conviction — not noise, not trends. Just depth.</p>
+    <div class="btns">
+      <span class="btn-g">Work With Me</span>
+      <span class="btn-o">See My Work</span>
+    </div>
+  </div>
+  <div class="badge"><div class="dot"></div><span class="badge-txt">Available for Projects</span></div>
+  <div class="scroll-ind"><div class="s-line"></div><span class="s-txt">Scroll</span></div>
+</div>
+
+<!-- WORD OPTIONS -->
+<div class="words-grid">
+  <div class="word-btn active" onclick="pick(this,'<em>Inspire.</em>','Inspire.','The Nike move — pure emotion. Your north star is to inspire before informing. This word IS your philosophy stated in one punch.')">
+    <div class="w-word">Inspire.</div>
+    <div class="w-tag">Your north star</div>
+  </div>
+  <div class="word-btn" onclick="pick(this,'<em>Lead.</em>','Lead.','One Step Ahead — reframed as an action. You don\'t follow. You lead the thinking. Signals authority without arrogance.')">
+    <div class="w-word">Lead.</div>
+    <div class="w-tag">Authority</div>
+  </div>
+  <div class="word-btn" onclick="pick(this,'<em>Ignite.</em>','Ignite.','Fire metaphor. Creates a visceral physical feeling in the gut. Think, create, then set something alight in the audience.')">
+    <div class="w-word">Ignite.</div>
+    <div class="w-tag">Visceral energy</div>
+  </div>
+  <div class="word-btn" onclick="pick(this,'<em>Move.</em>','Move.','Shortest. Heaviest. To move someone emotionally, physically, in their thinking. The ultimate goal of all great content.')">
+    <div class="w-word">Move.</div>
+    <div class="w-tag">Ultimate impact</div>
+  </div>
+  <div class="word-btn" onclick="pick(this,'<em>Transcend.</em>','Transcend.','Goes beyond the ordinary. Connects to your Vedantic philosophy — transcendence is a deep word in that tradition. Rare choice.')">
+    <div class="w-word">Transcend.</div>
+    <div class="w-tag">Philosophy</div>
+  </div>
+  <div class="word-btn" onclick="pick(this,'<em>Impact.</em>','Impact.','Direct. Clean. Your 4th craft fundamental. Think, create — and leave a lasting mark on the world. No ambiguity.')">
+    <div class="w-word">Impact.</div>
+    <div class="w-tag">Your craft value</div>
+  </div>
+</div>
+
+<!-- DESCRIPTION -->
+<div class="desc-box">
+  <div class="desc-word" id="desc-word">Inspire.</div>
+  <div class="desc-why" id="desc-why">The Nike move — pure emotion. Your north star is to inspire before informing. This word IS your philosophy stated in one punch.</div>
+</div>
+
+<script>
+function pick(btn, html, word, why){
+  document.querySelectorAll('.word-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const tw = document.getElementById('third-word');
+  tw.style.opacity='0';tw.style.transform='translateY(10px)';tw.style.transition='all 0.15s ease';
+  setTimeout(()=>{
+    tw.innerHTML=html;
+    tw.style.transition='all 0.5s cubic-bezier(0.16,1,0.3,1)';
+    tw.style.opacity='1';tw.style.transform='translateY(0)';
+  },180);
+  document.getElementById('desc-word').textContent=word;
+  document.getElementById('desc-why').textContent=why;
+}
+</script>
+</body>
+</html>

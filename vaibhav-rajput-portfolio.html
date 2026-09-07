@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaibhav Rajput — One Step Ahead</title>
+<meta name="description" content="Content Creator, Personal Brand Strategist & Storyteller. One Step Ahead.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ════════════════════════════════════════
+   RESET & ROOT
+════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --bg: #f8f7f4;
+  --bg-card: rgba(255,255,255,0.55);
+  --bg-dark: #0d0d0d;
+  --text: #1a1a1a;
+  --text-muted: #86868b;
+  --border: rgba(255,255,255,0.8);
+  --shadow: 0 20px 60px rgba(0,0,0,0.05);
+  --gold: #c9a84c;
+  --navy: #1A1A2E;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  font-family: var(--font-body);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.4rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(248,247,244,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  transition: padding 0.4s var(--ease);
+}
+
+nav.scrolled { padding: 1rem 4rem; }
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-cta {
+  background: var(--text) !important;
+  color: var(--bg) !important;
+  padding: 0.6rem 1.4rem;
+  border-radius: 50px;
+  font-weight: 500 !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+.nav-cta:hover { background: var(--navy) !important; transform: translateY(-1px); }
+
+/* ════════════════════════════════════════
+   HERO SECTION
+════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 4rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: heroPulse 6s ease-in-out infinite;
+}
+
+@keyframes heroPulse {
+  0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%,-50%) scale(1.15); opacity: 1; }
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  z-index: 1;
+}
+
+.hero-text { z-index: 1; }
+
+.hero-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease-out) 0.3s forwards;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease-out) 0.5s forwards;
+}
+
+.hero-title em { font-style: italic; color: var(--text-muted); }
+
+.hero-sub {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: #555;
+  line-height: 1.75;
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease-out) 0.8s forwards;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  opacity: 0;
+  animation: fadeUp 0.8s var(--ease-out) 1s forwards;
+}
+
+.btn-primary {
+  background: var(--text);
+  color: var(--bg);
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s var(--ease);
+}
+
+.btn-primary:hover { background: var(--navy); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(26,26,46,0.2); }
+
+.btn-secondary {
+  border: 1px solid rgba(0,0,0,0.15);
+  color: var(--text);
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  transition: all 0.3s var(--ease);
+}
+
+.btn-secondary:hover { border-color: var(--text); transform: translateY(-2px); }
+
+/* Hero Photo */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease-out) 0.6s forwards;
+}
+
+.hero-photo-wrap {
+  position: relative;
+  width: 380px;
+  height: 460px;
+}
+
+.hero-photo-frame {
+  width: 100%;
+  height: 100%;
+  border-radius: 40px 40px 120px 40px;
+  background: linear-gradient(135deg, #e8e4dc 0%, #d4cfca 100%);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.12);
+}
+
+.hero-photo-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.hero-photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #aaa;
+}
+
+.hero-photo-placeholder svg { opacity: 0.4; }
+.hero-photo-placeholder p { font-size: 0.8rem; color: #bbb; letter-spacing: 0.1em; }
+
+.hero-badge {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  background: white;
+  border-radius: 20px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.hero-badge-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #4caf79;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero-badge-text { font-size: 0.8rem; font-weight: 500; }
+.hero-badge-sub { font-size: 0.7rem; color: var(--text-muted); }
+
+/* ════════════════════════════════════════
+   SECTION SHARED STYLES
+════════════════════════════════════════ */
+.section-header {
+  margin-bottom: 5rem;
+}
+
+.section-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.section-title em { font-style: italic; color: var(--text-muted); }
+
+/* ════════════════════════════════════════
+   WHAT I DO
+════════════════════════════════════════ */
+#services {
+  padding: 8rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 28px;
+  padding: 3rem 2.5rem;
+  transition: all 0.8s var(--ease);
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.service-card.visible { opacity: 1; transform: translateY(0); }
+.service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
+
+.service-icon {
+  width: 52px; height: 52px;
+  border-radius: 16px;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.8rem;
+  font-size: 1.5rem;
+}
+
+.service-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.service-card p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* ════════════════════════════════════════
+   ABOUT / VALUES SCROLL JOURNEY
+════════════════════════════════════════ */
+#about {
+  background: var(--bg);
+}
+
+.about-intro {
+  padding: 8rem 4rem 4rem;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-intro p {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: #555;
+  line-height: 1.7;
+  margin-top: 1.5rem;
+}
+
+.roadmap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 2rem 6rem;
+}
+
+.value-block {
+  position: relative;
+  padding: 5rem 0;
+  display: flex;
+  justify-content: center;
+  min-height: 65vh;
+  align-items: center;
+}
+
+.glow-orb {
+  position: absolute;
+  width: 550px; height: 550px;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 2s var(--ease);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.value-block.visible .glow-orb { opacity: 0.35; }
+
+.v-simplicity .glow-orb   { background: #c8d8f0; }
+.v-growth .glow-orb        { background: #b8d8b8; }
+.v-curiosity .glow-orb     { background: #f0d090; }
+.v-clarity .glow-orb       { background: #a0c8f0; }
+.v-authenticity .glow-orb  { background: #f0b8a8; }
+.v-purpose .glow-orb       { background: #a8a8e8; }
+.v-story .glow-orb         { background: #c8a8f0; }
+.v-creativity .glow-orb    { background: #f0a8b8; }
+.v-connection .glow-orb    { background: #e8d0a8; }
+
+.connector {
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease);
+}
+
+.connector.visible { opacity: 1; }
+
+.connector svg {
+  width: 100%;
+  max-width: 380px;
+  height: 100%;
+  overflow: visible;
+}
+
+.connector-path {
+  fill: none;
+  stroke: #d2d2d7;
+  stroke-width: 1.2;
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  transition: stroke-dashoffset 2s var(--ease);
+}
+
+.connector.visible .connector-path { stroke-dashoffset: 0; }
+
+/* Value Cards */
+.value-card {
+  width: 100%;
+  max-width: 680px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.85);
+  border-radius: 36px;
+  padding: 4rem;
+  box-shadow: 0 2px 2px rgba(255,255,255,0.9) inset, 0 20px 60px rgba(0,0,0,0.04);
+  z-index: 2;
+  opacity: 0;
+  transform-style: preserve-3d;
+  transition: transform 1.2s var(--ease), opacity 1.2s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-left  { transform: translateX(-120px) scale(0.94) rotateY(-5deg); }
+.card-right { transform: translateX(120px)  scale(0.94) rotateY(5deg); }
+.value-card.visible { opacity: 1; transform: translateX(0) scale(1) rotateY(0); }
+.value-card.is-tilting { transition: transform 0.1s linear; }
+
+.card-shine {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.55) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.value-card:hover .card-shine { opacity: 1; }
+
+.card-content { position: relative; z-index: 2; }
+
+.v-num { font-size: 0.72rem; color: var(--text-muted); display: block; margin-bottom: 1.2rem; letter-spacing: 0.2em; font-weight: 500; }
+
+.v-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 300;
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.02em;
+}
+
+.v-core {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #444;
+  line-height: 1.55;
+  margin-bottom: 1.8rem;
+}
+
+.v-divider { width: 36px; height: 1px; background: #ddd; margin-bottom: 1.8rem; }
+
+.v-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+
+.v-list li {
+  font-size: 0.92rem;
+  color: #555;
+  line-height: 1.75;
+  padding-left: 1.6rem;
+  position: relative;
+  font-weight: 300;
+}
+
+.v-list li::before { content: "—"; position: absolute; left: 0; color: #ccc; }
+
+/* ════════════════════════════════════════
+   WORK — YOUTUBE
+════════════════════════════════════════ */
+#work {
+  padding: 8rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.yt-channel-card {
+  width: 100%;
+  background: white;
+  border-radius: 32px;
+  overflow: hidden;
+  margin-bottom: 3.5rem;
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.2s var(--ease);
+}
+
+.yt-channel-card.visible { opacity: 1; transform: translateY(0); }
+
+.yt-banner {
+  width: 100%; height: 200px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yt-banner-text {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 700;
+  color: rgba(255,255,255,0.04);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-family: var(--font-display);
+}
+
+.yt-profile-area {
+  padding: 1.5rem 3rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: white;
+}
+
+.yt-avatar {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  border: 4px solid white;
+  margin-top: -50px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  object-fit: cover;
+  background: #eee;
+}
+
+.yt-info h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 2px; }
+.yt-info p  { font-size: 0.875rem; color: var(--text-muted); }
+
+.sub-btn {
+  margin-left: auto;
+  background: #111;
+  color: white;
+  padding: 0.75rem 1.8rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s var(--ease);
+}
+
+.sub-btn:hover { transform: scale(1.04); background: #000; }
+
+.work-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+}
+
+/* Content Grids */
+.shorts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 4rem;
+}
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.media-card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: #f0f0f0;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s var(--ease);
+}
+
+.media-card.visible { opacity: 1; transform: translateY(0); }
+.media-card:hover { transform: scale(1.03) translateY(-4px); }
+
+.thumb-wrap { width: 100%; overflow: hidden; }
+.short-aspect { aspect-ratio: 9/16; }
+.video-aspect { aspect-ratio: 16/9; }
+.thumb-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.media-meta { padding: 1.2rem; }
+.media-meta h4 { font-size: 0.95rem; font-weight: 500; line-height: 1.4; margin-bottom: 4px; }
+.media-meta p { font-size: 0.8rem; color: var(--text-muted); }
+
+/* Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #ebebeb 25%, #e0e0e0 50%, #ebebeb 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+/* ════════════════════════════════════════
+   WHY WORK WITH ME
+════════════════════════════════════════ */
+#why {
+  padding: 8rem 4rem;
+  background: white;
+}
+
+.why-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.why-card {
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 24px;
+  padding: 2.5rem;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: all 0.8s var(--ease);
+}
+
+.why-card.visible { opacity: 1; transform: translateY(0); }
+.why-card:hover { background: var(--bg); border-color: rgba(0,0,0,0.1); }
+
+.why-icon { font-size: 1.6rem; margin-bottom: 1.2rem; }
+
+.why-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 0.8rem;
+}
+
+.why-card p { font-size: 0.9rem; color: #666; line-height: 1.75; font-weight: 300; }
+
+/* ════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════ */
+#contact {
+  padding: 8rem 4rem;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#contact .section-header { text-align: center; margin-bottom: 3rem; }
+
+#contact .section-title { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+
+.contact-sub {
+  font-size: 1rem;
+  color: #777;
+  line-height: 1.75;
+  margin-bottom: 3rem;
+  font-weight: 300;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  text-align: left;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.form-field input,
+.form-field textarea {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 14px;
+  padding: 1rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: none;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(26,26,46,0.06);
+}
+
+.form-field textarea { height: 140px; }
+
+.btn-submit {
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  align-self: flex-start;
+}
+
+.btn-submit:hover { background: var(--navy); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(26,26,46,0.2); }
+
+.social-row {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 3.5rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.3s ease;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  border: 1px solid transparent;
+}
+
+.social-link:hover { color: var(--text); border-color: rgba(0,0,0,0.1); }
+
+/* ════════════════════════════════════════
+   CLOSING / ABOUT VALUES
+════════════════════════════════════════ */
+.values-closing {
+  min-height: 80vh;
+  background: var(--bg-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.values-closing-light {
+  position: absolute;
+  width: 900px; height: 400px;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.22) 0%, transparent 70%);
+  filter: blur(80px);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+
+.values-closing blockquote {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #f0ede8;
+  line-height: 1.3;
+  max-width: 700px;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.5s var(--ease) 0.2s;
+}
+
+.values-closing.visible blockquote { opacity: 1; transform: translateY(0); }
+
+.values-closing cite {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-style: normal;
+  color: #555;
+  letter-spacing: 0.15em;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease 0.8s;
+}
+
+.values-closing.visible cite { opacity: 1; }
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer {
+  min-height: 100vh;
+  background: var(--bg-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6rem 4rem 4rem;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+.footer-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at var(--gx,50%) var(--gy,60%), rgba(201,168,76,0.12) 0%, transparent 65%);
+  pointer-events: none;
+  transition: opacity 1s ease;
+  opacity: 0;
+}
+
+footer.visible .footer-glow { opacity: 1; }
+
+.footer-name-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.footer-name {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 18vw, 20rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+  color: white;
+  text-transform: uppercase;
+  display: flex;
+  overflow: hidden;
+}
+
+.letter {
+  display: inline-block;
+  transform: translateY(100%);
+  transition: transform 1s var(--ease);
+}
+
+footer.visible .letter { transform: translateY(0); }
+
+.letter:nth-child(1) { transition-delay: 0.04s; }
+.letter:nth-child(2) { transition-delay: 0.10s; }
+.letter:nth-child(3) { transition-delay: 0.16s; }
+.letter:nth-child(4) { transition-delay: 0.22s; }
+.letter:nth-child(5) { transition-delay: 0.28s; }
+.letter:nth-child(6) { transition-delay: 0.34s; }
+.letter:nth-child(7) { transition-delay: 0.40s; }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 3rem;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s var(--ease) 0.5s;
+  gap: 3rem;
+}
+
+footer.visible .footer-bottom { opacity: 1; transform: translateY(0); }
+
+.footer-col { display: flex; flex-direction: column; gap: 0.8rem; }
+
+.footer-col-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: #555;
+  margin-bottom: 0.3rem;
+}
+
+.footer-link {
+  font-size: 0.95rem;
+  color: #ccc;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.footer-link:hover { color: white; transform: translateX(6px); }
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: #555;
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 260px;
+}
+
+/* ════════════════════════════════════════
+   ANIMATIONS
+════════════════════════════════════════ */
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 2rem; }
+  nav.scrolled { padding: 0.9rem 2rem; }
+  .nav-links { display: none; }
+  #hero { padding: 7rem 2rem 4rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+  .hero-btns { justify-content: center; }
+  .hero-sub { margin: 0 auto 2.5rem; }
+  .hero-visual { order: -1; }
+  .hero-photo-wrap { width: 280px; height: 340px; }
+  #services { padding: 5rem 2rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .roadmap { padding: 0 1rem 4rem; }
+  .value-card { padding: 2.5rem 2rem; }
+  .card-left, .card-right { transform: translateY(40px) scale(0.97); }
+  #work { padding: 5rem 2rem; }
+  .yt-profile-area { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+  .sub-btn { margin-left: 0; }
+  .videos-grid { grid-template-columns: 1fr; }
+  #why { padding: 5rem 2rem; }
+  .why-grid { grid-template-columns: 1fr; }
+  #contact { padding: 5rem 2rem; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { padding: 4rem 2rem 3rem; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav id="main-nav">
+  <a href="#hero" class="nav-logo">Vaibhav Rajput</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#why">Why Me</a></li>
+    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-label">Content Creator & Personal Brand Strategist</p>
+      <h1 class="hero-title">
+        One Step<br><em>Ahead.</em>
+      </h1>
+      <p class="hero-sub">I help brands connect with their audience through authentic storytelling, depth-driven content, and a voice rooted in real conviction.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Work With Me</a>
+        <a href="#work" class="btn-secondary">See My Work</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-frame">
+          <!-- Replace src with your actual photo path -->
+          <div class="hero-photo-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <p>Add Your Photo</p>
+          </div>
+        </div>
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <div>
+            <div class="hero-badge-text">Available for Projects</div>
+            <div class="hero-badge-sub">Content & Brand Strategy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT I DO ══ -->
+<section id="services">
+  <div class="section-header">
+    <span class="section-label">What I Do</span>
+    <h2 class="section-title">How I <em>Help Brands</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🎬</div>
+      <h3>Content Creation</h3>
+      <p>YouTube, Instagram, and written content that educates, entertains, and builds genuine connection with an audience — rooted in philosophy and real research.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧭</div>
+      <h3>Personal Branding</h3>
+      <p>Helping individuals and brands cut through the noise with a clear, authentic identity that stands for something real — not just a strategy, but a conviction.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✍️</div>
+      <h3>Storytelling & Communication</h3>
+      <p>Turning complex ideas into stories that people actually remember. Scripts, frameworks, narratives that make audiences feel something and take action.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT / VALUES JOURNEY ══ -->
+<section id="about">
+  <div class="about-intro">
+    <span class="section-label">My Story</span>
+    <h2 class="section-title">The Foundation<br>of <em>Everything</em></h2>
+    <p>I'm not a guru. I'm a fellow learner — obsessed with growth, clarity, and the belief that one step forward every day compounds into something extraordinary. Scroll to meet the values that drive everything I create.</p>
+  </div>
+
+  <div class="roadmap">
+
+    <!-- 01 SIMPLICITY -->
+    <section class="value-block v-simplicity">
+      <div class="glow-orb"></div>
+      <div class="value-card card-left">
+        <div class="card-shine"></div>
+        <div class="card-content">
+          <span class="v-num">01 / 09</span>
+          <h2 class="v-title">Simplicity</h2>
+          <div class="v-divider"></div>
+          <p class="v-core">"Simplicity is the foundation of everything."</p>
+          <ul class="v-list">
+            <li>Mental energy is finite. Every unnecessary decision drains the same reservoir you need for your most meaningful work.</li>
+            <li>Decision fatigue is real — science proves the quality of our choices deteriorates as the day wears on. Simplicity protects your best thinking.</li>
+            <li>When I strip away the noise, what remains is always the essential. And the essential is always enough.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="connector">
+      <svg viewBox="0 0 400 220"><path class="connector-path" d="M200,0 C200,110 380,110 380,220"/></svg>
+    </div>
+
+    <!-- 02 GROWTH -->
+    <section class="value-block v-growth">
+      <div class="glow-orb"></div>
+      <div class="value-card card-right">
+        <div class="card-shine"></div>
+        <div class="card-content">
+          <span class="v-num">02 / 09</span>
+          <h2 class="v-title">Growth</h2>
+          <div class="v-divider"></div>
+          <p class="v-core">If I am at level X today, level Y is the only acceptable goal tomorrow.</p>
+          <ul class="v-list">
+            <li>Growth is not a destination. It is a direction — permanent and non-negotiable.</li>
+            <li>My only competition is who I was yesterday. Not others, not the market, not the algorithm.</li>
+            <li>Every video, every article, every conversation is one more brick in a body of work I'm building over years.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="connector">
+      <svg viewBox="0 0 400 220"><path class="connector-path" d="M380,0 C380,110 20,110 20,220"/></svg>
+    </div>
+
+    <!-- 03 CURIOSITY -->
+    <section class="value-block v-curiosity">
+      <div class="glow-orb"></div>
+      <div class="value-card card-left">
+        <div class="card-shine"></div>
+        <div class="card-content">
+          <span class="v-num">03 / 09</span>
+          <h2 class="v-title">Curiosity</h2>
+          <div class="v-divider"></div>
+          <p class="v-core">I don't do things because everyone else is doing them. I do them because I need to know what's on the other side.</p>
+          <ul class="v-list">
+            <li>Curiosity is my biggest driver. Without it, I will never truly master anything.</li>
+            <li>It's the difference between performing a task and being alive inside it.</li>
+            <li>Not a personality trait — a daily, deliberate practice. I choose it consciously, every morning.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="connector">
+      <svg viewBox="0 0 400 220"><path class="connector-path" d="M20,0 C20,110 380,110 380,220"/></svg>
+    </div>
+
+    <!-- 04 CLARITY -->
+    <section class="value-block v-clarity">
+      <div class="glow-orb"></div>
+      <div class="value-card card-right">
+        <div class="card-shine"></div>
+        <div class="card-content">
+          <span class="v-num">04 / 09</span>
+          <h2 class="v-title">Clarity</h2>
+          <div class="v-divider"></div>
+          <p class="v-core">Confidence without clarity is a dangerous thing. Clarity is what separates direction from noise.</p>
+          <ul class="v-list">
+            <li>Before I act, I seek to understand. Before I speak, I seek to know exactly what I mean.</li>
+            <li>Most people aren't confused about what to do. They're confused about what they want. Clarity answers that first.</li>
+            <li>A clear mind produces clear work. Everything downstream flows better when the source is unmuddied.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="connector">
+      <svg viewBox="0 0 400 220"><path class="connector-path" d="M380,0 C380,110 20,110 20,220"/></svg>
+    </div>
+
+    <!-- 05 AUTHENTICITY -->
+    <section class="value-block v-authenticity">
+      <div class="glow-orb"></div>
+      <div class="value-card card-left">
+        <div class="card-shine"></div>
+        <div class="card-content">
+          <span class="v-num">05 / 09</span>
+          <h2 class="v-title">Authenticity</h2>
+          <div class="v-divider"></div>
+          <p class="v-core">I only create what I genuinely believe in. The moment I create for performance, I lose the very thing that makes the work worth creating.</p>
+          <ul class="v-list">
+            <li>People feel the difference between content born from conviction and content born from strategy.</li>
+            <li>My content is not a performance. It is an extension of how I actually think and live.</li>
+            <li>In a world full of noise, authenticity is the rarest and most powerful signal.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="connector">
+      <svg viewBox="0 0 400 220"><path class="connector-path" d="M20,0 C20,110 380,110 380,220"/></svg>
+    </div>
+
+    <!-- 06 PURPOSE -->
+    <section class="value-block v-purpose">
+      <div class="glow-orb"></div>
+      <div class="value-card card-right">
+        <div class="card-shine"></div>
+        <div class="card-content">
+          <span class="v-num">06 / 09</span>
+          <h2 class="v-title">Purpose</h2>
+          <div class="v-divider"></div>
+          <p class="v-core">Without purpose, even the most disciplined effort becomes hollow. Purpose is the why that makes every how worth doing.</p>
+          <ul class="v-list">
+            <li>I create content because one well-placed idea, reaching the right person at the right moment, can change an entire trajectory.</li>
+            <li>Purpose is my anchor when motivation fails and self-doubt arrives — and it always arrives.</li>
+            <li>If a project doesn't serve my purpose, I don't do it. Clarity of purpose is also clarity of boundaries.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="connector">
+      <svg viewBox="0 0 400 220"><path class="connector-path" d="M380,0 C380,110 20,110 20,220"/></svg>
+    </div>
+
+    <!-- 07 STORY -->
+    <section class="value-block v-story">
+      <div class="glow-orb"></div>
+      <div class="value-card card-left">
+        <div class="card-shine"></div>
+        <div class="card-content">
+          <span class="v-num">07 / 09</span>
+          <h2 class="v-title">Story</h2>
+          <div class="v-divider"></div>
+          <p class="v-core">Facts inform. Stories transform. Every idea I share is wrapped in a story because that is how human beings actually learn and remember.</p>
+          <ul class="v-list">
+            <li>Story is not decoration. It is the vehicle. The idea is the passenger. Without the vehicle, the idea never arrives.</li>
+            <li>My entire content practice is built around one discipline — learning to tell better stories, every single day.</li>
+            <li>A well-told story outlives any statistic, any argument, any persuasion technique. It is the oldest technology humans have.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="connector">
+      <svg viewBox="0 0 400 220"><path class="connector-path" d="M20,0 C20,110 380,110 380,220"/></svg>
+    </div>
+
+    <!-- 08 CREATIVITY -->
+    <section class="value-block v-creativity">
+      <div class="glow-orb"></div>
+      <div class="value-card card-right">
+        <div class="card-shine"></div>
+        <div class="card-content">
+          <span class="v-num">08 / 09</span>
+          <h2 class="v-title">Creativity</h2>
+          <div class="v-divider"></div>
+          <p class="v-core">Creativity is not a gift. It is a discipline. It is what happens when curiosity meets consistency.</p>
+          <ul class="v-list">
+            <li>I don't wait for inspiration. I build systems that make creativity inevitable — daily writing, reading, reflection.</li>
+            <li>The most creative work I've done came not from genius, but from showing up on days when I didn't feel like it.</li>
+            <li>Creativity is connecting dots others haven't. The more you collect — through reading, living, thinking — the more connections become possible.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="connector">
+      <svg viewBox="0 0 400 220"><path class="connector-path" d="M380,0 C380,110 20,110 20,220"/></svg>
+    </div>
+
+    <!-- 09 CONNECTION -->
+    <section class="value-block v-connection">
+      <div class="glow-orb"></div>
+      <div class="value-card card-left">
+        <div class="card-shine"></div>
+        <div class="card-content">
+          <span class="v-num">09 / 09</span>
+          <h2 class="v-title">Connection</h2>
+          <div class="v-divider"></div>
+          <p class="v-core">At the end of everything, what matters most is not what you built — but who you built it with, and who you built it for.</p>
+          <ul class="v-list">
+            <li>I'm not interested in broadcasting. I'm interested in reaching — the right person, at the right moment, with the right idea.</li>
+            <li>Every comment, every message that says "this helped me" — that's the metric that matters above all others.</li>
+            <li>We're all one step ahead of someone, and one step behind someone else. That humility is what makes genuine connection possible.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- end roadmap -->
+
+  <!-- Values Closing Quote -->
+  <div class="values-closing">
+    <div class="values-closing-light"></div>
+    <blockquote>"Simplicity is the<br>foundation of everything."</blockquote>
+    <cite>— Vaibhav Rajput &nbsp;·&nbsp; One Step Ahead</cite>
+  </div>
+
+</section>
+
+<!-- ══ WORK — YOUTUBE ══ -->
+<section id="work">
+  <div class="section-header">
+    <span class="section-label">Proof of Work</span>
+    <h2 class="section-title">YouTube <em>Content</em></h2>
+  </div>
+
+  <div class="yt-channel-card" id="yt-card">
+    <div class="yt-banner"><div class="yt-banner-text">VAIBHAV</div></div>
+    <div class="yt-profile-area">
+      <img
+        src="https://yt3.googleusercontent.com/jg-Oc7SZas88VRejJiT_FiyUZ7-T-Dhv71ccrJJ4Sfkt-9hb0J1Cz9cdmRk7ccKAIMr0PgAmaQ=s176-c-k-c0x00ffffff-no-rj"
+        class="yt-avatar" alt="Vaibhav Rajput"
+        onerror="this.style.background='#eee'"
+      >
+      <div class="yt-info">
+        <h3>Vaibhav Rajput</h3>
+        <p>@vaibhav.rajpute · Content Creator & Personal Brand Strategist</p>
+      </div>
+      <a href="https://www.youtube.com/@vaibhav.rajpute?sub_confirmation=1" target="_blank" class="sub-btn">Subscribe</a>
+    </div>
+  </div>
+
+  <h3 class="work-subtitle">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="#ff0000"><path d="M17.65,11.35L12,5.71V11H8V13H12V18.29L17.65,12.65C17.85,12.45 17.95,12.23 17.95,12C17.95,11.77 17.85,11.55 17.65,11.35Z"/></svg>
+    Latest Shorts
+  </h3>
+  <div class="shorts-grid" id="shorts-container">
+    <div class="media-card skeleton" style="aspect-ratio:9/16;border-radius:20px;"></div>
+    <div class="media-card skeleton" style="aspect-ratio:9/16;border-radius:20px;"></div>
+    <div class="media-card skeleton" style="aspect-ratio:9/16;border-radius:20px;"></div>
+    <div class="media-card skeleton" style="aspect-ratio:9/16;border-radius:20px;"></div>
+  </div>
+
+  <h3 class="work-subtitle">Featured Deep-Dives</h3>
+  <div class="videos-grid" id="videos-container">
+    <div class="media-card skeleton" style="aspect-ratio:16/9;border-radius:20px;"></div>
+    <div class="media-card skeleton" style="aspect-ratio:16/9;border-radius:20px;"></div>
+  </div>
+</section>
+
+<!-- ══ WHY WORK WITH ME ══ -->
+<section id="why">
+  <div class="why-inner">
+    <div class="section-header">
+      <span class="section-label">The Difference</span>
+      <h2 class="section-title">Why Brands<br><em>Work With Me</em></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">📚</div>
+        <h3>Depth over noise</h3>
+        <p>Content rooted in philosophy, real research, and lived experience. Not chasing trends — building a body of work that compounds over time.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <h3>Audience-first thinking</h3>
+        <p>Every piece is built for genuine connection, not just clicks. I think about what the audience needs to feel before I think about what to say.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">⚙️</div>
+        <h3>Consistent & reliable</h3>
+        <p>A systems thinker who delivers on time, every time. Creativity without discipline is just inspiration. I bring both.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔥</div>
+        <h3>Authentic voice</h3>
+        <p>I only create what I genuinely believe in. That conviction is what separates content that resonates from content that gets scrolled past.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-label">Get In Touch</span>
+    <h2 class="section-title">Have a project<br><em>in mind?</em></h2>
+  </div>
+  <p class="contact-sub">Whether you need content strategy, brand voice development, or a long-term creative partner — let's talk. I respond within 24 hours.</p>
+  <form class="contact-form" onsubmit="handleSubmit(event)">
+    <div class="form-row">
+      <div class="form-field">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" placeholder="Rahul Sharma" required>
+      </div>
+      <div class="form-field">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="hello@company.com" required>
+      </div>
+    </div>
+    <div class="form-field">
+      <label for="project">What's the project?</label>
+      <input type="text" id="project" placeholder="YouTube content strategy, brand voice, collaboration...">
+    </div>
+    <div class="form-field">
+      <label for="message">Tell me more</label>
+      <textarea id="message" placeholder="Share any details about your brand, your goals, or what you're looking for..."></textarea>
+    </div>
+    <button type="submit" class="btn-submit">Send Message →</button>
+  </form>
+  <div class="social-row">
+    <a href="https://www.youtube.com/@vaibhav.rajpute" target="_blank" class="social-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+    <a href="https://www.instagram.com/" target="_blank" class="social-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="https://www.linkedin.com/in/harixomxsingh/" target="_blank" class="social-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+      LinkedIn
+    </a>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer id="main-footer">
+  <div class="footer-glow" id="footer-glow"></div>
+  <div class="footer-name-wrap">
+    <h2 class="footer-name" aria-label="VAIBHAV">
+      <span class="letter">V</span><span class="letter">A</span><span class="letter">I</span><span class="letter">B</span><span class="letter">H</span><span class="letter">A</span><span class="letter">V</span>
+    </h2>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-col">
+      <p class="footer-col-label">Connect</p>
+      <a href="https://www.youtube.com/@vaibhav.rajpute" target="_blank" class="footer-link">YouTube</a>
+      <a href="https://www.instagram.com/" target="_blank" class="footer-link">Instagram</a>
+      <a href="https://www.linkedin.com/in/harixomxsingh/" target="_blank" class="footer-link">LinkedIn</a>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-label">Project Inquiries</p>
+      <a href="mailto:hello@vaibhavrajput.com" class="footer-link">hello@vaibhavrajput.com</a>
+      <a href="#contact" class="footer-link">Work With Me →</a>
+    </div>
+    <div class="footer-col">
+      <p class="footer-copy">© 2025 Vaibhav Rajput.<br>One Step Ahead.<br>Building through clarity.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ════ INTERSECTION OBSERVER ════ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+    else e.target.classList.remove('visible');
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll(
+  '.service-card, .value-block, .value-card, .connector, .why-card, .yt-channel-card, .media-card, .values-closing, #main-footer'
+).forEach(el => observer.observe(el));
+
+/* ════ NAV SCROLL ════ */
+window.addEventListener('scroll', () => {
+  document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ════ 3D TILT ON VALUE CARDS ════ */
+document.querySelectorAll('.value-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    if (!card.classList.contains('visible')) return;
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    const rx = ((y - r.height/2) / r.height) * -10;
+    const ry = ((x - r.width/2)  / r.width)  *  10;
+    card.classList.add('is-tilting');
+    card.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) scale(1.02)`;
+    const s = card.querySelector('.card-shine');
+    if (s) { s.style.setProperty('--mx', `${(x/r.width)*100}%`); s.style.setProperty('--my', `${(y/r.height)*100}%`); }
+  });
+  card.addEventListener('mouseleave', () => {
+    card.classList.remove('is-tilting');
+    card.style.transform = '';
+  });
+});
+
+/* ════ FOOTER MOUSE GLOW ════ */
+const footer = document.getElementById('main-footer');
+const fglow  = document.getElementById('footer-glow');
+footer.addEventListener('mousemove', e => {
+  const r = footer.getBoundingClientRect();
+  fglow.style.setProperty('--gx', `${((e.clientX - r.left)/r.width)*100}%`);
+  fglow.style.setProperty('--gy', `${((e.clientY - r.top)/r.height)*100}%`);
+});
+
+/* ════ CONNECTOR PATH LENGTHS ════ */
+document.querySelectorAll('.connector-path').forEach(path => {
+  const len = path.getTotalLength();
+  path.style.strokeDasharray = len;
+  path.style.strokeDashoffset = len;
+});
+
+/* ════ STAGGERED CARD DELAYS ════ */
+document.querySelectorAll('.service-card').forEach((c,i) => c.style.transitionDelay = `${i * 0.12}s`);
+document.querySelectorAll('.why-card').forEach((c,i) => c.style.transitionDelay = `${i * 0.1}s`);
+
+/* ════ CONTACT FORM ════ */
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit');
+  btn.textContent = 'Message Sent ✓';
+  btn.style.background = '#2d7a4f';
+  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; e.target.reset(); }, 3000);
+}
+
+/* ════ YOUTUBE CONTENT (live fetch via Gemini) ════ */
+async function fetchYouTube() {
+  const channelHandle = "@vaibhav.rajpute";
+  const apiKey = ""; // Add your Gemini API key here
+
+  if (!apiKey) {
+    renderFallbackYT();
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({
+        contents:[{parts:[{text:`Fetch the 4 latest shorts and 2 latest long videos from YouTube channel ${channelHandle}. Return JSON only.`}]}],
+        tools:[{"google_search":{}}],
+        generationConfig:{
+          responseMimeType:"application/json",
+          responseSchema:{type:"OBJECT",properties:{
+            shorts:{type:"ARRAY",items:{type:"OBJECT",properties:{title:{type:"STRING"},url:{type:"STRING"},thumb:{type:"STRING"}}}},
+            videos:{type:"ARRAY",items:{type:"OBJECT",properties:{title:{type:"STRING"},url:{type:"STRING"},thumb:{type:"STRING"},date:{type:"STRING"}}}}
+          }}
+        }
+      })
+    });
+
+    const data = await res.json();
+    const parsed = JSON.parse(data.candidates?.[0]?.content?.parts?.[0]?.text || '{}');
+    renderYT(parsed);
+  } catch(err) {
+    renderFallbackYT();
+  }
+}
+
+function renderYT(data) {
+  const sc = document.getElementById('shorts-container');
+  const vc = document.getElementById('videos-container');
+  if (data.shorts?.length) {
+    sc.innerHTML = data.shorts.map(s => `
+      <a href="${s.url}" target="_blank" class="media-card">
+        <div class="thumb-wrap short-aspect">
+          <img src="${s.thumb}" class="thumb-img" alt="${s.title}" onerror="this.parentElement.style.background='#eee'">
+        </div>
+      </a>`).join('');
+  }
+  if (data.videos?.length) {
+    vc.innerHTML = data.videos.map(v => `
+      <a href="${v.url}" target="_blank" class="media-card">
+        <div class="thumb-wrap video-aspect">
+          <img src="${v.thumb}" class="thumb-img" alt="${v.title}" onerror="this.parentElement.style.background='#eee'">
+        </div>
+        <div class="media-meta"><h4>${v.title}</h4><p>${v.date||'Latest Upload'}</p></div>
+      </a>`).join('');
+  }
+  document.querySelectorAll('.media-card').forEach(el => observer.observe(el));
+}
+
+function renderFallbackYT() {
+  const channelUrl = "https://www.youtube.com/@vaibhav.rajpute";
+  document.getElementById('shorts-container').innerHTML = `
+    <a href="${channelUrl}" target="_blank" class="media-card visible" style="background:#f0f0f0;aspect-ratio:9/16;display:flex;align-items:center;justify-content:center;text-decoration:none;">
+      <div style="text-align:center;color:#999;padding:1rem;">
+        <svg width="32" height="32" fill="#ff0000" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        <p style="font-size:.75rem;margin-top:.5rem">View Channel</p>
+      </div>
+    </a>`.repeat(4);
+  document.getElementById('videos-container').innerHTML = `
+    <a href="${channelUrl}" target="_blank" class="media-card visible" style="background:#f0f0f0;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;text-decoration:none;">
+      <div style="text-align:center;color:#999;">
+        <svg width="40" height="40" fill="#ff0000" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        <p style="font-size:.8rem;margin-top:.5rem">Watch on YouTube</p>
+      </div>
+    </a>`.repeat(2);
+}
+
+window.onload = () => {
+  fetchYouTube();
+  observer.observe(document.getElementById('yt-card'));
+};
+</script>
+
+</body>
+</html>
