@@ -3,6 +3,11 @@
 > *"Think. Create. Inspire."*  
 > **"Find The Spark. Leave A Mark."**
 
+🌐 **Live Website**: [**https://harixomxsingh.github.io/portfolio/**](https://harixomxsingh.github.io/portfolio/)
+
+[![Live Portfolio](https://img.shields.io/badge/Live%20Portfolio-harixomxsingh.github.io%2Fportfolio-c5a25d?style=for-the-badge&logo=safari&logoColor=white)](https://harixomxsingh.github.io/portfolio/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Active%20Deployment-2ea44f?style=for-the-badge&logo=githubpages&logoColor=white)](https://harixomxsingh.github.io/portfolio/)
+
 Welcome to the official repository for **Hariom Singh**'s personal portfolio website and venture showcase. Built from the ground up on the principles of **Radical Simplicity**, deliberate craftsmanship, and human-centric design.
 
 ---
@@ -75,8 +80,8 @@ An interactive click-to-expand system detailing how ideas transform into reality
 - **Story Architecture**: Keynote frameworks and translating complex ideas into emotion.
 
 ### 6. Digital Business Card & Contact
-- Quick-copy email trigger (`hello@hariomsingh.com`).
-- Interactive project type selector chips.
+- Direct personal email (`www.hariom03.com@gmail.com`) with one-click copy.
+- Interactive project type selector chips and pre-filled email dispatch.
 - Direct links to YouTube, LinkedIn, and Instagram.
 
 ---
@@ -114,8 +119,10 @@ npx -y live-server --port=5173 ./v2
 ## 👤 Author
 
 **Hariom Singh**  
+- **Website**: [harixomxsingh.github.io/portfolio](https://harixomxsingh.github.io/portfolio/)  
+- **Email**: [www.hariom03.com@gmail.com](mailto:www.hariom03.com@gmail.com)  
 - **YouTube**: [@Harixomxsingh](https://www.youtube.com/@Harixomxsingh)  
 - **GitHub**: [@Harixomxsingh](https://github.com/Harixomxsingh)  
 - **LinkedIn**: [harixomxsingh](https://www.linkedin.com/in/harixomxsingh/)  
 
-*Built with conscious intent. Find The Spark. Leave A Mark.*
+*build by hari with ❤️ · Find The Spark. Leave A Mark.*
