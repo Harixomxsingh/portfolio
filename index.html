@@ -6,6 +6,11 @@
   <title>Hariom Singh — Creator & Aspiring Entrepreneur | Find The Spark. Leave A Mark.</title>
   <meta name="description" content="Hariom Singh — Creator & Aspiring Entrepreneur. Driven by creation over consumption, deep storytelling, and building ventures that solve real-world problems.">
   
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="assets/favicon.svg">
+  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3124,14 +3129,14 @@
 
           <!-- Quick Copy Email Box -->
           <div class="quick-email-box">
-            <div>
-              <div class="quick-email-label">Direct Inquiries</div>
-              <div class="quick-email-val" id="emailVal">hello@hariomsingh.com</div>
-            </div>
-            <button class="btn-copy-email" onclick="copyEmail()">
-              <span id="copyBtnText">Copy Email</span>
-            </button>
-          </div>
+             <div>
+               <div class="quick-email-label">Direct Inquiries</div>
+               <a href="mailto:www.hariom03.com@gmail.com" class="quick-email-val" id="emailVal" style="color: inherit; text-decoration: none;">www.hariom03.com@gmail.com</a>
+             </div>
+             <button class="btn-copy-email" onclick="copyEmail()">
+               <span id="copyBtnText">Copy Email</span>
+             </button>
+           </div>
 
           <!-- Social links -->
           <div class="social-pills-row">
@@ -3405,8 +3410,19 @@
     /* ── Contact Form Submission ── */
     function handleContactSubmit(e) {
       e.preventDefault();
+      const name = document.getElementById('clientName').value;
+      const email = document.getElementById('clientEmail').value;
+      const message = document.getElementById('clientMessage').value;
+      const selectedChip = document.querySelector('.project-chip-btn.selected')?.textContent || 'Collaboration';
+
+      const subject = encodeURIComponent(`[Portfolio Collaboration] ${selectedChip} from ${name}`);
+      const body = encodeURIComponent(`Hi Hariom,\n\nMy name is ${name} (${email}).\n\nProject Category: ${selectedChip}\n\nVision / Message:\n${message}\n\nLooking forward to connecting!`);
+      
+      // Open direct email draft to your personal gmail
+      window.location.href = `mailto:www.hariom03.com@gmail.com?subject=${subject}&body=${body}`;
+
       const btn = document.getElementById('submitBtn');
-      btn.innerHTML = '<span>Message Sent Successfully ✓</span>';
+      btn.innerHTML = '<span>Opening Mail Client ✓</span>';
       btn.style.background = '#2ea44f';
       btn.style.color = '#ffffff';
       setTimeout(() => {
@@ -3414,7 +3430,7 @@
         btn.style.background = '';
         btn.style.color = '';
         e.target.reset();
-      }, 3500);
+      }, 4000);
     }
 
     /* ── Scroll Observer for Fade Reveals & Nav Scrolled ── */
@@ -3457,6 +3473,43 @@
         nav.classList.remove('scrolled');
       }
     });
+
+    /* ── Animated Rotating Sunflower Favicon in Browser Tab ── */
+    (function initAnimatedFavicon() {
+      const faviconLink = document.querySelector("link[rel*='icon']");
+      if (!faviconLink) return;
+      
+      const img = new Image();
+      img.src = 'assets/favicon.svg';
+      
+      const canvas = document.createElement('canvas');
+      canvas.width = 32;
+      canvas.height = 32;
+      const ctx = canvas.getContext('2d');
+      let angle = 0;
+
+      function renderFrame() {
+        if (document.hidden) {
+          setTimeout(renderFrame, 500);
+          return;
+        }
+        ctx.clearRect(0, 0, 32, 32);
+        ctx.save();
+        ctx.translate(16, 16);
+        ctx.rotate(angle);
+        ctx.drawImage(img, -16, -16, 32, 32);
+        ctx.restore();
+        
+        faviconLink.href = canvas.toDataURL('image/png');
+        angle += 0.04;
+        if (angle >= Math.PI * 2) angle = 0;
+        setTimeout(renderFrame, 65);
+      }
+
+      img.onload = () => {
+        renderFrame();
+      };
+    })();
   </script>
 </body>
 </html>

@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <radialGradient id="sunflowerCenterGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1c0d02"/>
+      <stop offset="60%" stop-color="#3d1704"/>
+      <stop offset="85%" stop-color="#712b08"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </radialGradient>
+    <linearGradient id="sunflowerPetalBack" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="35%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+    <linearGradient id="sunflowerPetalFront" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="30%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <style>
+      @keyframes spinFavicon {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      .spinning-sunflower {
+        transform-origin: 50px 50px;
+        animation: spinFavicon 8s linear infinite;
+      }
+    </style>
+  </defs>
+
+  <g class="spinning-sunflower">
+    <!-- Layer 1: 16 Back Petals (offset 11.25 deg) -->
+    <g fill="url(#sunflowerPetalBack)">
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(11.25 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(33.75 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(56.25 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(78.75 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(101.25 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(123.75 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(146.25 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(168.75 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(191.25 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(213.75 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(236.25 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(258.75 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(281.25 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(303.75 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(326.25 50 50)"/>
+      <path d="M50,3 C53.5,15 54,32 50,42 C46,32 46.5,15 50,3 Z" transform="rotate(348.75 50 50)"/>
+    </g>
+
+    <!-- Layer 2: 16 Front Petals -->
+    <g fill="url(#sunflowerPetalFront)">
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(0 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(22.5 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(45 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(67.5 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(90 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(112.5 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(135 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(157.5 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(180 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(202.5 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(225 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(247.5 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(270 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(292.5 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(315 50 50)"/>
+      <path d="M50,4 C53.5,16 54,32 50,42 C46,32 46.5,16 50,4 Z" transform="rotate(337.5 50 50)"/>
+    </g>
+
+    <!-- Central Disk Floret with Rich Radial Texture -->
+    <circle cx="50" cy="50" r="19" fill="url(#sunflowerCenterGrad)" stroke="#f59e0b" stroke-width="1.2"/>
+
+    <!-- Concentric seed pattern dots -->
+    <g fill="#f59e0b" opacity="0.85">
+      <circle cx="50" cy="35" r="1.3"/>
+      <circle cx="60.6" cy="39.4" r="1.3"/>
+      <circle cx="65" cy="50" r="1.3"/>
+      <circle cx="60.6" cy="60.6" r="1.3"/>
+      <circle cx="50" cy="65" r="1.3"/>
+      <circle cx="39.4" cy="60.6" r="1.3"/>
+      <circle cx="35" cy="50" r="1.3"/>
+      <circle cx="39.4" cy="39.4" r="1.3"/>
+      <circle cx="55.7" cy="36.1" r="1.2"/>
+      <circle cx="63.9" cy="44.3" r="1.2"/>
+      <circle cx="63.9" cy="55.7" r="1.2"/>
+      <circle cx="55.7" cy="63.9" r="1.2"/>
+      <circle cx="44.3" cy="63.9" r="1.2"/>
+      <circle cx="36.1" cy="55.7" r="1.2"/>
+      <circle cx="36.1" cy="44.3" r="1.2"/>
+      <circle cx="44.3" cy="36.1" r="1.2"/>
+    </g>
+    <g fill="#d97706" opacity="0.9">
+      <circle cx="50" cy="41" r="1.2"/>
+      <circle cx="56.4" cy="43.6" r="1.2"/>
+      <circle cx="59" cy="50" r="1.2"/>
+      <circle cx="56.4" cy="56.4" r="1.2"/>
+      <circle cx="50" cy="59" r="1.2"/>
+      <circle cx="43.6" cy="56.4" r="1.2"/>
+      <circle cx="41" cy="50" r="1.2"/>
+      <circle cx="43.6" cy="43.6" r="1.2"/>
+      <circle cx="50" cy="50" r="2.5" fill="#fbbf24"/>
+    </g>
+  </g>
+</svg>
