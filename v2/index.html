@@ -348,18 +348,43 @@
     .hamburger {
       display: none;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
       gap: 5px;
       background: none;
       border: none;
+      width: 40px;
+      height: 40px;
       padding: 6px;
       cursor: pointer;
+      border-radius: var(--radius-sm);
+      transition: background 0.2s ease;
+    }
+
+    .hamburger:hover {
+      background: rgba(20, 20, 22, 0.05);
     }
 
     .hamburger span {
       width: 22px;
-      height: 1.5px;
+      height: 2px;
       background: var(--text-main);
-      transition: all 0.3s var(--ease);
+      border-radius: 2px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
     }
 
     /* ══════════════════════════════════════════════════════════════
@@ -2261,12 +2286,132 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
-       RESPONSIVE ADAPTATIONS
+       MOBILE NAVIGATION DRAWER
+    ══════════════════════════════════════════════════════════════ */
+    .mobile-nav-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 360px;
+      height: 100vh;
+      background: rgba(248, 246, 240, 0.98);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.2rem 1.8rem 2.5rem;
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+      border-left: 1px solid var(--border-subtle);
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .mobile-nav-drawer.active {
+      right: 0;
+    }
+
+    .mobile-nav-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 13, 16, 0.6);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .mobile-nav-backdrop.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-nav-close {
+      background: none;
+      border: none;
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--text-main);
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      margin: 2rem 0;
+    }
+
+    .mobile-nav-links a {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: var(--text-main);
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+      display: inline-block;
+    }
+
+    .mobile-nav-links a:active,
+    .mobile-nav-links a:hover {
+      color: var(--gold-dark);
+      transform: translateX(6px);
+    }
+
+    .mobile-nav-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .btn-collaborate-mobile {
+      background: var(--text-main);
+      color: var(--bg-main);
+      padding: 0.95rem 1.6rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .mobile-nav-socials {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .mobile-nav-socials a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       COMPREHENSIVE RESPONSIVE DESIGN SYSTEM
     ══════════════════════════════════════════════════════════════ */
     @media (max-width: 960px) {
       .hero-grid {
         grid-template-columns: 1fr;
-        gap: 3.5rem;
+        gap: 3.2rem;
         text-align: center;
       }
 
@@ -2278,13 +2423,19 @@
         margin: 0 auto;
       }
 
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
       .craft-layout {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2.5rem;
       }
 
       .craft-sticky-sidebar {
         position: static;
+        text-align: left;
       }
 
       .values-grid {
@@ -2298,22 +2449,29 @@
 
       .shorts-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
       }
 
       .videos-grid {
         grid-template-columns: 1fr;
+        gap: 1.8rem;
       }
 
       .services-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
       }
 
       .contact-grid {
         grid-template-columns: 1fr;
-        gap: 3.5rem;
+        gap: 3rem;
       }
 
       .nav-links {
+        display: none;
+      }
+
+      .status-badge {
         display: none;
       }
 
@@ -2322,23 +2480,281 @@
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
+      html, body {
+        overflow-x: hidden;
+      }
+
+      header#hero {
+        padding-top: 6.8rem;
+        padding-bottom: 4rem;
+      }
+
+      .hero-headline {
+        font-size: clamp(2.4rem, 10.5vw, 4.2rem);
+        line-height: 1.08;
+        word-break: break-word;
+      }
+
+      .hero-eyebrow-pill {
+        font-size: 0.72rem;
+        padding: 0.4rem 0.85rem;
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 0.8rem;
+      }
+
+      .hero-cta-group a {
+        width: 100%;
+        justify-content: center;
+        min-height: 48px;
+      }
+
+      .portrait-card {
+        max-width: 310px;
+        border-radius: 26px 26px 72px 26px;
+        padding: 10px;
+        margin: 0 auto;
+      }
+
+      .portrait-inner {
+        height: 360px;
+        border-radius: 20px 20px 64px 20px;
+        padding: 1.2rem;
+      }
+
+      .portrait-badge-overlay {
+        padding: 0.85rem 1.1rem;
+      }
+
+      .portrait-badge-title {
+        font-size: 0.9rem;
+      }
+
+      .portrait-badge-desc {
+        font-size: 0.74rem;
+      }
+
       .section-spacing {
-        padding: 5rem 0;
+        padding: 4.5rem 0;
+      }
+
+      .section-title {
+        font-size: clamp(2.1rem, 7.5vw, 3.2rem);
+      }
+
+      .section-sub {
+        font-size: 0.98rem;
+        line-height: 1.7;
+      }
+
+      .yt-hub-profile {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+        gap: 1.2rem;
+      }
+
+      .yt-avatar-frame {
+        margin-top: -55px;
+        width: 88px;
+        height: 88px;
+      }
+
+      .yt-hub-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+      }
+
+      .btn-yt-subscribe,
+      .btn-yt-channel {
+        width: 100%;
+        justify-content: center;
+        min-height: 46px;
+      }
+
+      .product-actions-row {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+      }
+
+      .product-actions-row a {
+        width: 100%;
+        justify-content: center;
+        min-height: 46px;
+      }
+
+      .product-visual-box,
+      .manifest-visual-box,
+      .pop-visual-box {
+        min-height: 220px;
+        height: 240px;
+      }
+
+      .contact-right {
+        padding: 1.8rem 1.4rem;
+        border-radius: 22px;
       }
 
       .form-row {
         grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .form-control {
+        font-size: 16px; /* Prevents auto-zoom in iOS Safari */
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
+      }
+
+      .btn-submit-form {
+        width: 100%;
+        justify-content: center;
+        min-height: 50px;
+      }
+
+      .project-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .project-chip-btn {
+        flex: 1 1 auto;
+        text-align: center;
+        padding: 0.6rem 0.85rem;
+        font-size: 0.8rem;
+        min-height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .quick-email-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding: 1.4rem;
+      }
+
+      .btn-copy-email {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        min-height: 46px;
+      }
+
+      .footer-huge-name {
+        font-size: clamp(2.2rem, 14vw, 5.5rem);
+        letter-spacing: -0.02em;
+      }
+
+      #typedNameContainer {
+        display: inline-flex;
+        align-items: baseline;
+        justify-content: center;
+        white-space: nowrap;
+      }
+
+      #main-footer {
+        padding: 4.5rem 0 2.5rem;
+      }
+
+      .footer-watermark-wrap {
+        margin-bottom: 2.5rem;
+      }
+
+      .footer-bottom-row {
+        flex-direction: column;
+        gap: 1.2rem;
+        text-align: center;
+      }
+
+      /* Lightbox Modal Responsive */
+      .yt-modal-backdrop {
+        padding: 0.8rem;
+      }
+
+      .yt-modal-container {
+        max-width: 100%;
+        border-radius: 20px;
+      }
+
+      .yt-modal-container.is-short {
+        max-width: 320px;
+        max-height: 85vh;
+      }
+
+      .yt-modal-header {
+        padding: 0.8rem 1rem;
+        font-size: 0.82rem;
+      }
+
+      /* Play Indicators visible on mobile touch */
+      .short-play-indicator {
+        opacity: 0.9;
+        transform: scale(1);
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      .video-play-badge {
+        opacity: 0.95;
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1.1rem;
       }
 
       .shorts-grid {
         grid-template-columns: 1fr;
       }
 
-      .footer-bottom-row {
+      .value-card-item {
+        padding: 1.6rem 1.2rem;
+      }
+
+      .craft-card {
+        padding: 1.3rem 1.1rem;
+      }
+
+      .service-card {
+        padding: 1.6rem 1.2rem;
+      }
+
+      .product-spotlight-card {
+        padding: 1.6rem 1.2rem;
+      }
+
+      .hero-eyebrow-pill {
         flex-direction: column;
-        gap: 1.5rem;
-        text-align: center;
+        gap: 0.2rem;
+        border-radius: var(--radius-md);
+      }
+
+      .hero-eyebrow-pill .dot {
+        display: none;
+      }
+
+      .btn-collaborate {
+        display: none;
+      }
+
+      .mobile-nav-drawer {
+        width: 90%;
       }
     }
   </style>
@@ -2371,7 +2787,7 @@
           <span>Let's Talk</span>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
-        <button class="hamburger" aria-label="Toggle Navigation Menu">
+        <button class="hamburger" onclick="toggleMobileNav()" aria-label="Toggle Navigation Menu">
           <span></span>
           <span></span>
           <span></span>
@@ -2379,6 +2795,35 @@
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-header">
+      <div class="status-badge" style="display: inline-flex;">
+        <div class="status-dot"></div>
+        <span>Available for Projects</span>
+      </div>
+      <button class="mobile-nav-close" onclick="toggleMobileNav()" aria-label="Close Menu">&times;</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#manifesto" onclick="toggleMobileNav()">Philosophy</a></li>
+      <li><a href="#craft" onclick="toggleMobileNav()">The Craft</a></li>
+      <li><a href="#work" onclick="toggleMobileNav()">Content &amp; Proof</a></li>
+      <li><a href="#collaboration" onclick="toggleMobileNav()">Collaboration</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <a href="#contact" class="btn-collaborate-mobile" onclick="toggleMobileNav()">
+        <span>Let's Talk</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+      <div class="mobile-nav-socials">
+        <a href="https://www.youtube.com/@Harixomxsingh" target="_blank">YouTube</a>
+        <a href="https://www.linkedin.com/in/harixomxsingh/" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </div>
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop" onclick="toggleMobileNav()"></div>
 
   <!-- ══════════════════════════════════════════════════════════════
        HERO SECTION
@@ -3428,8 +3873,32 @@
 
     // Close modal on Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeVideoModal();
+      if (e.key === 'Escape') {
+        closeVideoModal();
+        const drawer = document.getElementById('mobileNavDrawer');
+        if (drawer && drawer.classList.contains('active')) toggleMobileNav();
+      }
     });
+
+    /* ── Mobile Navigation Drawer Toggle ── */
+    function toggleMobileNav() {
+      const drawer = document.getElementById('mobileNavDrawer');
+      const backdrop = document.getElementById('mobileNavBackdrop');
+      const hamburger = document.querySelector('.hamburger');
+      if (!drawer || !backdrop) return;
+      const isOpen = drawer.classList.contains('active');
+      if (isOpen) {
+        drawer.classList.remove('active');
+        backdrop.classList.remove('active');
+        if (hamburger) hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+      } else {
+        drawer.classList.add('active');
+        backdrop.classList.add('active');
+        if (hamburger) hamburger.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
 
     /* ── Craft Accordion Toggle ── */
     function toggleCraft(card) {
