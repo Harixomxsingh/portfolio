@@ -1707,9 +1707,9 @@
     }
 
     /* ══════════════════════════════════════════════════════════════
-       SECTION: HOW I HELP BRANDS (STRATEGIC VALUE)
+       SECTION: HOW WE WORK TOGETHER (COLLABORATION)
     ══════════════════════════════════════════════════════════════ */
-    #offerings {
+    #collaboration, #offerings {
       background: var(--bg-main);
       border-top: 1px solid var(--border-subtle);
     }
@@ -1725,41 +1725,99 @@
       background: #ffffff;
       border: 1px solid var(--border-card);
       border-radius: var(--radius-lg);
-      padding: 3rem 2.2rem;
-      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+      padding: 2.8rem 2.2rem;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .service-card:hover {
       transform: translateY(-6px);
       box-shadow: var(--shadow-md);
+      border-color: rgba(197, 162, 93, 0.4);
+    }
+
+    .service-top-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-index {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
     }
 
     .service-icon-wrap {
-      width: 52px;
-      height: 52px;
-      border-radius: var(--radius-md);
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
       background: var(--bg-main);
+      border: 1px solid var(--border-card);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.8rem;
       color: var(--text-main);
-      font-size: 1.4rem;
+      font-size: 1.3rem;
     }
 
     .service-card h3 {
       font-family: var(--font-display);
-      font-size: 1.8rem;
+      font-size: 1.85rem;
       font-weight: 400;
-      margin-bottom: 0.8rem;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
       color: var(--text-main);
     }
 
+    .service-hook {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #4b4b52;
+      line-height: 1.4;
+      margin-bottom: 1.2rem;
+    }
+
     .service-card p {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #55555c;
-      line-height: 1.75;
+      line-height: 1.7;
       font-weight: 300;
+      margin-bottom: 1.6rem;
+    }
+
+    .service-deliverables {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .service-deliverables li {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-weight: 500;
+    }
+
+    .service-deliverables li .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
     }
 
     /* ══════════════════════════════════════════════════════════════
@@ -2121,8 +2179,8 @@
       <ul class="nav-links">
         <li><a href="#manifesto">Philosophy</a></li>
         <li><a href="#craft">The Craft</a></li>
-        <li><a href="#work">Content & Proof</a></li>
-        <li><a href="#offerings">Strategic Value</a></li>
+        <li><a href="#work">Content &amp; Proof</a></li>
+        <li><a href="#collaboration">Collaboration</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -2844,43 +2902,79 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════════════════
-       SECTION: HOW I HELP BRANDS (STRATEGIC VALUE)
+       SECTION: WAYS WE CAN WORK TOGETHER (COLLABORATION)
   ══════════════════════════════════════════════════════════════ -->
-  <section id="offerings" class="section-spacing">
+  <section id="collaboration" class="section-spacing">
     <div class="container">
       
       <div class="fade-reveal">
-        <span class="section-eyebrow">Strategic Value</span>
-        <h2 class="section-title">How I Help Founders &amp; Brands<br><em>Cut Through The Noise</em></h2>
+        <span class="section-eyebrow">Collaboration</span>
+        <h2 class="section-title">Ways We Can Create<br><em>Something Meaningful Together</em></h2>
         <p class="section-sub">
-          Moving beyond superficial trends to craft positioning, narratives, and content that command lasting respect.
+          Whether you are a founder with a story to tell, a brand looking to stand out with depth, or a creator building something that matters.
         </p>
       </div>
 
       <div class="services-grid">
         
+        <!-- Card 01: Storytelling & Video -->
         <div class="service-card fade-reveal">
-          <div class="service-icon-wrap">🎬</div>
-          <h3>Content Creation</h3>
-          <p>
-            YouTube, vertical video, and written long-form essays built on research, philosophical depth, and narrative structure that keeps audiences captivated.
-          </p>
+          <div>
+            <div class="service-top-meta">
+              <span class="service-index">01 / Story &amp; Video</span>
+              <div class="service-icon-wrap">🎬</div>
+            </div>
+            <h3>Storytelling &amp; Video</h3>
+            <div class="service-hook">"Turning deep ideas into stories that people remember."</div>
+            <p>
+              I research, script, and produce high-impact YouTube video essays and short-form perspectives. Moving far away from cheap clickbait, we create thoughtful, engaging content that moves people and sparks conversation.
+            </p>
+          </div>
+          <ul class="service-deliverables">
+            <li><span class="dot"></span> Scriptwriting &amp; Narrative Framing</li>
+            <li><span class="dot"></span> Full Video Essay Production</li>
+            <li><span class="dot"></span> High-Resolution Visual Concepts</li>
+          </ul>
         </div>
 
+        <!-- Card 02: Brand & Narrative Voice -->
         <div class="service-card fade-reveal">
-          <div class="service-icon-wrap">🧭</div>
-          <h3>Personal Branding</h3>
-          <p>
-            Helping founders and thinkers define their genuine voice, carve out a unique worldview, and communicate with authority that compounds over years.
-          </p>
+          <div>
+            <div class="service-top-meta">
+              <span class="service-index">02 / Narrative Voice</span>
+              <div class="service-icon-wrap">🧭</div>
+            </div>
+            <h3>Brand &amp; Narrative Voice</h3>
+            <div class="service-hook">"Helping you stand for something real in a noisy world."</div>
+            <p>
+              Helping founders, creators, and thinkers uncover their genuine voice, clarify their core message, and build a lasting reputation that commands trust and compounds over years.
+            </p>
+          </div>
+          <ul class="service-deliverables">
+            <li><span class="dot"></span> Message &amp; Worldview Clarification</li>
+            <li><span class="dot"></span> Founder Narrative Strategy</li>
+            <li><span class="dot"></span> Content System &amp; Distribution</li>
+          </ul>
         </div>
 
+        <!-- Card 03: Product & Venture Thinking -->
         <div class="service-card fade-reveal">
-          <div class="service-icon-wrap">✍️</div>
-          <h3>Story Architecture</h3>
-          <p>
-            Transforming complex technical or strategic ideas into memorable stories, scripts, and keynote frameworks that make people feel and act.
-          </p>
+          <div>
+            <div class="service-top-meta">
+              <span class="service-index">03 / Venture Thinking</span>
+              <div class="service-icon-wrap">💡</div>
+            </div>
+            <h3>Product &amp; Venture Thinking</h3>
+            <div class="service-hook">"Taking an idea from first principles to a simple digital tool."</div>
+            <p>
+              Partnering with founders and builders to turn messy, complex problems into radically simple, human-friendly digital tools and software (just like <em>Still</em>, <em>Manifest</em>, and <em>Pop</em>).
+            </p>
+          </div>
+          <ul class="service-deliverables">
+            <li><span class="dot"></span> First-Principles Concept Design</li>
+            <li><span class="dot"></span> Radical Simplicity &amp; UX Flow</li>
+            <li><span class="dot"></span> MVP Prototyping &amp; Strategy</li>
+          </ul>
         </div>
 
       </div>
@@ -2941,10 +3035,10 @@
             <div class="form-group">
               <label class="form-label">What are you looking to build?</label>
               <div class="project-chips">
-                <button type="button" class="project-chip-btn selected" onclick="selectChip(this)">Brand Strategy</button>
-                <button type="button" class="project-chip-btn" onclick="selectChip(this)">YouTube Content</button>
-                <button type="button" class="project-chip-btn" onclick="selectChip(this)">Venture &amp; Collab</button>
-                <button type="button" class="project-chip-btn" onclick="selectChip(this)">Story Architecture</button>
+                <button type="button" class="project-chip-btn selected" onclick="selectChip(this)">Story &amp; Video</button>
+                <button type="button" class="project-chip-btn" onclick="selectChip(this)">Brand &amp; Narrative</button>
+                <button type="button" class="project-chip-btn" onclick="selectChip(this)">Product &amp; Venture</button>
+                <button type="button" class="project-chip-btn" onclick="selectChip(this)">General Collaboration</button>
               </div>
             </div>
 
