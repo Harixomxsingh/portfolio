@@ -124,5 +124,6 @@ npx -y live-server --port=5173 ./v2
 - **YouTube**: [@Harixomxsingh](https://www.youtube.com/@Harixomxsingh)  
 - **GitHub**: [@Harixomxsingh](https://github.com/Harixomxsingh)  
 - **LinkedIn**: [harixomxsingh](https://www.linkedin.com/in/harixomxsingh/)  
+- **Instagram**: [@harixomxsingh](https://www.instagram.com/harixomxsingh/)  
 
 *build by hari with ❤️ · Find The Spark. Leave A Mark.*
