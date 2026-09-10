@@ -65,7 +65,8 @@ An interactive click-to-expand system detailing how ideas transform into reality
 #### 🚀 Track 01 · Software & Ventures (What I Am Building)
 1. **[Still (v2.0.0)](https://github.com/Harixomxsingh/still)** — A distraction-free digital sanctuary for your nervous system. Procedural neuro-acoustic soundscapes (432Hz Solfeggio, Brownian noise) & 0.1Hz resonant breathing pacer. Zero logins, zero tracking, zero ads.
    - [Launch Web Sanctuary](https://harixomxsingh.github.io/still/) · [Download Android APK](https://github.com/Harixomxsingh/still/releases/download/v2.0.0/Still.apk)
-2. **[Manifest (Beta)](https://github.com/Harixomxsingh/manifest)** — Morning Intentionality & Alignment System. A unified daily briefing with calendar focus, to-dos, curated growth wisdom (James Clear), real-time weather context, and upcoming AI-powered voice reflection.
+2. **[Manifest (Live Beta)](https://harixomxsingh.github.io/manifest/)** — Morning Intentionality & Alignment System. A unified daily briefing with calendar focus, to-dos, curated growth wisdom (James Clear), real-time weather context, and upcoming AI-powered voice reflection.
+   - [Launch Web App](https://harixomxsingh.github.io/manifest/) · [GitHub Source](https://github.com/Harixomxsingh/manifest)
 3. **[Pop (In Development)](https://github.com/Harixomxsingh/pop)** — Digital Fog Disrupter & Dopamine Reset. A 1-tap radical simplicity tool designed to snap users out of algorithmic autopilot and clear cognitive brain fog in under 60 seconds.
 
 #### 🎬 Track 02 · Content & Media (What I Am Creating)
